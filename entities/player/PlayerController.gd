@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var player_health: Health
 @export var speed: float = 300
@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var wall_jump_lerp_weight: float = 0.5
 @export var wall_jump_cooldown_duration: float = 0.25
 @export var air_friction: float = 200
+@export var DIGGING_RANGE  = 150.00 # dont type hint this with float or else it throws an error
 
 var can_wall_jump: bool = false
 var wall_jump_input_cooldown: float = 0.0
@@ -15,9 +16,17 @@ var last_wall_normal: Vector2 = Vector2.ZERO
 var is_wall_sliding: bool = false
 var gravity
 
+signal player_digging(mouse_pos: Vector2)
+
 func _ready():
 	gravity = get_gravity()
 	jump_velocity = -jump_velocity
+	
+func _process(delta: float):
+	if Input.is_action_just_pressed("attack"):
+		#if position.direction_to(get_global_mouse_position()) < DIGGING_RANGE:
+		player_digging.emit(get_global_mouse_position())
+		
 
 func _physics_process(delta: float):
 	if wall_jump_input_cooldown > 0.0:
@@ -44,8 +53,6 @@ func _physics_process(delta: float):
 	
 	# Add the gravity.
 	velocity += gravity * delta
-	
-	
 	
 	jump()
 	movePlayer(delta)
