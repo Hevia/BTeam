@@ -2,17 +2,17 @@ class_name LevelMaker extends RefCounted
 
 
 
-func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Dictionary:
+func make_floor(viewport_size: Vector2, num_steps: int = 50) -> Dictionary:
 	var viewport_center = viewport_size/2
 	var bottom_right = viewport_size
 	var top_left = Vector2(0,0)
 	var top_right = Vector2(viewport_size.x, 0)
 	var bottom_left = Vector2(0, viewport_size.y)
 	var floor_walkers: Array[FloorWalker] = [
-		FloorWalker.new(viewport_size, viewport_center)] 
-		#FloorWalker.new(viewport_size, top_left)]
-		#FloorWalker.new(viewport_size, top_right),
-		#FloorWalker.new(viewport_size, bottom_left)]
+		FloorWalker.new(viewport_size, viewport_center),
+		FloorWalker.new(viewport_size, top_left),
+		FloorWalker.new(viewport_size, top_right),
+		FloorWalker.new(viewport_size, bottom_left)]
 		
 	# Generation vars
 	var floor: Array[Vector2i] = [floor_walkers[0].position] # Starting value

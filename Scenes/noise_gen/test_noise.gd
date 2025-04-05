@@ -70,7 +70,7 @@ func _make_level():
 				var tile_pos = Vector2i(x, y)
 				noise_tile_pos.append(tile_pos)
 	
-	var level = level_maker.make_floor(tilemap_size)
+	var level = level_maker.make_floor(tilemap_size, 135)
 	var floor_tiles: Array[Vector2i]  = level["floor_tiles"]
 	var bedrock_tiles: Array[Vector2i]  = level["bedrock_tiles"]
 	

@@ -19,7 +19,7 @@ player_health = NodePath("Health")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -38.725)
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("2_eaotn")
