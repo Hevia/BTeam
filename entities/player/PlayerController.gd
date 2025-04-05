@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var wall_slide_slow: float = 4
 @export var wall_jump_force: float = 500
 @export var wall_jump_lerp_weight: float = 0.5
-@export var wall_jump_cooldown_duration: float = 0.5
+@export var wall_jump_cooldown_duration: float = 0.25
 @export var air_friction: float = 200
 
 var can_wall_jump: bool = false
