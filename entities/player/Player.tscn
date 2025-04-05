@@ -8,8 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lhm"]
 size = Vector2(20, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_453mm"]
-size = Vector2(16, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eaotn"]
+radius = 7.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health")]
 script = ExtResource("1_453mm")
@@ -35,7 +36,7 @@ metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_453mm")
+shape = SubResource("CapsuleShape2D_eaotn")
 
 [node name="Visuals" type="Node2D" parent="."]
 
