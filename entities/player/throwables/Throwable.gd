@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name Throwable
 
 @export var collider: CollisionShape2D
+@export var throw_force: float = 640
 @export var projectile_lifetime: float = 6
 
 func _ready():
@@ -9,7 +10,6 @@ func _ready():
 
 func _physics_process(delta: float):
 	projectile_lifetime -= delta
-	print(projectile_lifetime)
 	if projectile_lifetime <= 0:
 		queue_free()
 
