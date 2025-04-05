@@ -11,8 +11,9 @@ size = Vector2(20, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_453mm"]
 size = Vector2(16, 28)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health")]
 script = ExtResource("1_453mm")
+player_health = NodePath("Health")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -38.725)

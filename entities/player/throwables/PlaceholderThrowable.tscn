@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://blltbftmyr58q"]
+
+[ext_resource type="Texture2D" uid="uid://devop2erat1yo" path="res://entities/player/assets/throwable_placeholder.png" id="1_6681x"]
+[ext_resource type="Script" uid="uid://0k2vo8qh4bhe" path="res://entities/player/throwables/Throwable.gd" id="1_ym2nb"]
+[ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="2_ym2nb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hre3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjwnt"]
+radius = 6.92816
+
+[node name="PlaceholderThrowable" type="RigidBody2D" node_paths=PackedStringArray("collider")]
+collision_layer = 128
+collision_mask = 130
+script = ExtResource("1_ym2nb")
+collider = NodePath("CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6681x")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 130
+script = ExtResource("2_ym2nb")
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_1hre3")
+debug_color = Color(0.904175, 0.282841, 0.310406, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_bjwnt")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
