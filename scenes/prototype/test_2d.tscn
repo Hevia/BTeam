@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dubjrioh7sdm0"]
+
+[ext_resource type="Script" uid="uid://ochgkesso00i" path="res://scenes/prototype/test_2d.gd" id="1_eye44"]
+[ext_resource type="TileSet" uid="uid://bvayovqf1txgx" path="res://resources/game.tres" id="1_y7ln4"]
+
+[node name="Test2D" type="Node2D" node_paths=PackedStringArray("tilemap_floor", "camera_2d")]
+script = ExtResource("1_eye44")
+tilemap_floor = NodePath("TileMapLayer")
+camera_2d = NodePath("Camera2D")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_y7ln4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
