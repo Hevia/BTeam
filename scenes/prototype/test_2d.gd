@@ -1,6 +1,7 @@
 extends Node2D
 
 const TEST_TILE =  Vector2i(1,0)
+const BEDROCK_TILE = Vector2i(1,1)
 
 @export var tilemap_floor: TileMapLayer
 @export var player: Player
@@ -26,9 +27,14 @@ func make_level():
 	tilemap_floor.clear()
 	var viewport_size = tilemap_floor.local_to_map(tilemap_floor.to_local(get_viewport_rect().size))   
 	var level = level_maker.make_floor(viewport_size)
-	print("Level size: " + str(level.size()))
-	for tile in level:
+	var floor_tiles = level["floor_tiles"]
+	var bedrock_tiles = level["bedrock_tiles"]
+	print("Level size: " + str(floor_tiles.size()))
+	for tile in floor_tiles:
 		tilemap_floor.set_cell(tile, 1, TEST_TILE)
+	
+	for tile in bedrock_tiles:
+		tilemap_floor.set_cell(tile, 1, BEDROCK_TILE)
 
 func on_player_digging(mouse_pos: Vector2):
 	# Its a global mouse pos we need locally on the tilemap

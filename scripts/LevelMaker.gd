@@ -2,7 +2,7 @@ class_name LevelMaker extends RefCounted
 
 
 
-func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Array[Vector2i]:
+func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Dictionary:
 	var viewport_center = viewport_size/2
 	var bottom_right = viewport_size
 	var top_left = Vector2(0,0)
@@ -13,7 +13,11 @@ func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Array[Vector2i]
 		#FloorWalker.new(viewport_size, top_left)]
 		#FloorWalker.new(viewport_size, top_right),
 		#FloorWalker.new(viewport_size, bottom_left)]
+		
+	# Generation vars
 	var floor: Array[Vector2i] = [floor_walkers[0].position] # Starting value
+	var bedrock: Array[Vector2] = []
+	var player_pos: Vector2
 	
 	
 	# Lets avoid floor walker collisions with a fancy lambda function
@@ -35,10 +39,35 @@ func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Array[Vector2i]
 		
 		step_count += 1
 	
-	# Step 2: Replace floor tiles with loot
+	floor.sort()
 	
-	# Step 3: Add enemies
+	# Step 2: Make a rectangle of bedrock tiles around the floor
+	var min_x = INF
+	var min_y = INF
+	var max_x = -INF
+	var max_y = -INF
 	
-	# Step 4: Add player
+	# Find the bounds of the floor
+	for tile in floor:
+		min_x = min(min_x, tile.x)
+		min_y = min(min_y, tile.y)
+		max_x = max(max_x, tile.x)
+		max_y = max(max_y, tile.y)
+	
+	# Only create the bedrock rectangle if the floor has tiles
+	if floor.size() > 0:
+		# Create a rectangle of bedrock tiles around the floor
+		# We'll go one tile out from the bounds
+		for x in range(min_x - 1, max_x + 2):
+			# Top edge
+			bedrock.append(Vector2(x, min_y - 1))
+			# Bottom edge
+			bedrock.append(Vector2(x, max_y + 1))
+		
+		for y in range(min_y, max_y + 1):
+			# Left edge
+			bedrock.append(Vector2(min_x - 1, y))
+			# Right edge
+			bedrock.append(Vector2(max_x + 1, y))
 
-	return floor
+	return {"floor_tiles": floor, "bedrock_tiles": bedrock, "player_spawn": player_pos}

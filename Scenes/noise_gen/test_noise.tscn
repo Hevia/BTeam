@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=4 uid="uid://datotibo2l6x8"]
+
+[ext_resource type="Script" uid="uid://k1k6iaomk1f" path="res://Scenes/noise_gen/test_noise.gd" id="1_fltlm"]
+[ext_resource type="Texture2D" uid="uid://b6fsacwwttuyx" path="res://assets/parallax_bg/7.png" id="2_j5qqh"]
+[ext_resource type="Texture2D" uid="uid://cq6ysuf3wly0y" path="res://assets/parallax_bg/6.png" id="3_jsm5e"]
+[ext_resource type="Texture2D" uid="uid://c405q64fmmdfd" path="res://assets/parallax_bg/5.png" id="4_1nadf"]
+[ext_resource type="Texture2D" uid="uid://fuirjw42bkqy" path="res://assets/parallax_bg/4.png" id="5_upfjb"]
+[ext_resource type="Texture2D" uid="uid://bvvrrdq7dve78" path="res://assets/parallax_bg/3.png" id="6_ko3tx"]
+[ext_resource type="Texture2D" uid="uid://blsoncrqrmqcr" path="res://assets/parallax_bg/2.png" id="7_3epsh"]
+[ext_resource type="Texture2D" uid="uid://djhkdk8oteou8" path="res://assets/parallax_bg/1.png" id="8_llejx"]
+[ext_resource type="TileSet" uid="uid://bvayovqf1txgx" path="res://resources/game.tres" id="9_j0m6n"]
+[ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="10_pxds0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fltlm"]
+noise_type = 4
+frequency = 0.0734
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dg6mh"]
+seamless_blend_skirt = 0.0
+noise = SubResource("FastNoiseLite_fltlm")
+
+[node name="TestNoise" type="Node2D" node_paths=PackedStringArray("tilemap_floor", "player")]
+script = ExtResource("1_fltlm")
+tilemap_floor = NodePath("TileMapLayer")
+player = NodePath("Player")
+noise_Text = SubResource("NoiseTexture2D_dg6mh")
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(6, 6)
+
+[node name="CaveBackground" type="Parallax2D" parent="Background"]
+scale = Vector2(1.00001, 1.00001)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CaveBackground"]
+texture = ExtResource("2_j5qqh")
+
+[node name="PillarsFar3" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar3"]
+texture = ExtResource("3_jsm5e")
+
+[node name="PillarsFar2" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar2"]
+texture = ExtResource("4_1nadf")
+
+[node name="PillarsFar" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.05, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar"]
+texture = ExtResource("5_upfjb")
+
+[node name="PillarsNear" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.12, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsNear"]
+texture = ExtResource("6_ko3tx")
+
+[node name="CelingsNear2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.25, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CelingsNear2"]
+texture = ExtResource("7_3epsh")
+
+[node name="CeilingsNear" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.5, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CeilingsNear"]
+texture = ExtResource("8_llejx")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAADAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAACAAUAAQAAAAAAAAACAAQAAQAAAAAAAAA=")
+tile_set = ExtResource("9_j0m6n")
+
+[node name="TileMapSpawn" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAASAA8AAQAAAAAAAAATAA8AAQAAAAAAAAAUAA8AAQAAAAAAAAAVAA8AAQAAAAAAAAAWAA8AAQAAAAAAAAAXAA8AAQAAAAAAAAAYAA8AAQAAAAAAAAAZAA8AAQAAAAAAAAAaAA8AAQAAAAAAAAARAA8AAQAAAAAAAAAQAA8AAQAAAAAAAAAPAA8AAQAAAAAAAAAOAA8AAQAAAAAAAAANAA8AAQAAAAAAAAAMAA8AAQAAAAAAAAALAA8AAQAAAAAAAAAKAA8AAQAAAAAAAAAJAA8AAQAAAAAAAAAIAA8AAQAAAAAAAAAHAA8AAQAAAAAAAAAGAA8AAQAAAAAAAAAFAA8AAQAAAAAAAAAEAA8AAQAAAAAAAAADAA8AAQAAAAAAAAACAA8AAQAAAAAAAAABAA8AAQAAAAAAAAAbAA8AAQAAAAAAAAAcAA8AAQAAAAAAAAAdAA8AAQAAAAAAAAAeAA8AAQAAAAAAAAAfAA8AAQAAAAAAAAAgAA8AAQAAAAAAAAAhAA8AAQAAAAAAAAAiAA8AAQAAAAAAAAAjAA8AAQAAAAAAAAAkAA8AAQAAAAAAAAAlAA8AAQAAAAAAAAAmAA8AAQAAAAAAAAAnAA8AAQAAAAAAAAA=")
+tile_set = ExtResource("9_j0m6n")
+
+[node name="Player" parent="." instance=ExtResource("10_pxds0")]
+position = Vector2(669, 439)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.226707, 0.226707, 0.226707, 1)
