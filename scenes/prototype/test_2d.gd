@@ -24,8 +24,9 @@ func _input(event: InputEvent) -> void:
 		
 func make_level():
 	tilemap_floor.clear()
-	var viewport_size = get_viewport_rect().size
-	var level = level_maker.make_floor(viewport_size, 200)
+	var viewport_size = tilemap_floor.local_to_map(tilemap_floor.to_local(get_viewport_rect().size))   
+	var level = level_maker.make_floor(viewport_size)
+	print("Level size: " + str(level.size()))
 	for tile in level:
 		tilemap_floor.set_cell(tile, 1, TEST_TILE)
 
