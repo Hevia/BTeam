@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://durof3dso3qj7"]
+
+[ext_resource type="Texture2D" uid="uid://biroioybov3pc" path="res://entities/enemies/test dummy/test_dummy.png" id="1_i8stw"]
+[ext_resource type="Script" uid="uid://b64o2aa620jex" path="res://entities/enemies/test_dummy.gd" id="1_sxwoi"]
+[ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="2_fgg3s"]
+[ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="3_sxwoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg5qd"]
+size = Vector2(21, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgg3s"]
+size = Vector2(25, 34)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxwoi"]
+font_size = 10
+
+[node name="TestDummy" type="CharacterBody2D" node_paths=PackedStringArray("health", "health_label")]
+collision_layer = 2
+collision_mask = 130
+script = ExtResource("1_sxwoi")
+health = NodePath("Health")
+health_label = NodePath("HealthLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -15)
+shape = SubResource("RectangleShape2D_jg5qd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_i8stw")
+offset = Vector2(-0.32, -30.06)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_fgg3s")
+max_health = 6
+metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_sxwoi")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -15)
+shape = SubResource("RectangleShape2D_fgg3s")
+debug_color = Color(0, 0.649138, 0.155791, 0.42)
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -12.0
+offset_top = -49.0
+offset_right = 10.775
+offset_bottom = -26.0
+text = "0"
+label_settings = SubResource("LabelSettings_sxwoi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

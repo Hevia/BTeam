@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=8 format=3 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
+[ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p8rbg"]
 
@@ -74,3 +75,6 @@ collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Placeholder Terrain/MeshInstance2D3/StaticBody2D"]
 shape = SubResource("RectangleShape2D_p8rbg")
+
+[node name="TestDummy" parent="." instance=ExtResource("2_qtv3y")]
+position = Vector2(-149, 0)

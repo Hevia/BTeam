@@ -10,6 +10,8 @@ func _ready():
 
 
 func _on_area_entered(hitbox: Hitbox) -> void:
+	print("Projectile Hit")
 	if hitbox != null:
+		print("projectile damaged!")
 		health.health -= hitbox.damage
 		received_damage.emit(hitbox.damage)
