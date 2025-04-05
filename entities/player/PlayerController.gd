@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var speed: float = 300
 @export var jump_velocity: float = 400
 @export var wall_slide_slow: float = 4
-@export var wall_jump_force: float = 600
+@export var wall_jump_force: float = 500
 @export var wall_jump_lerp_weight: float = 0.5
-@export var wall_jump_cooldown_duration: float = 0.15
+@export var wall_jump_cooldown_duration: float = 0.5
 @export var air_friction: float = 200
 
 var can_wall_jump: bool = false
@@ -72,5 +72,7 @@ func movePlayer(delta: float):
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
+	elif last_wall_normal.x == direction:
+		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, air_friction)
