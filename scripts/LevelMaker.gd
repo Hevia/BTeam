@@ -16,7 +16,7 @@ func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Dictionary:
 		
 	# Generation vars
 	var floor: Array[Vector2i] = [floor_walkers[0].position] # Starting value
-	var bedrock: Array[Vector2] = []
+	var bedrock: Array[Vector2i] = []
 	var player_pos: Vector2
 	
 	
@@ -60,14 +60,14 @@ func make_floor(viewport_size: Vector2, num_steps: int = 500) -> Dictionary:
 		# We'll go one tile out from the bounds
 		for x in range(min_x - 1, max_x + 2):
 			# Top edge
-			bedrock.append(Vector2(x, min_y - 1))
+			bedrock.append(Vector2i(x, min_y - 1))
 			# Bottom edge
-			bedrock.append(Vector2(x, max_y + 1))
+			bedrock.append(Vector2i(x, max_y + 1))
 		
 		for y in range(min_y, max_y + 1):
 			# Left edge
-			bedrock.append(Vector2(min_x - 1, y))
+			bedrock.append(Vector2i(min_x - 1, y))
 			# Right edge
-			bedrock.append(Vector2(max_x + 1, y))
+			bedrock.append(Vector2i(max_x + 1, y))
 
 	return {"floor_tiles": floor, "bedrock_tiles": bedrock, "player_spawn": player_pos}
