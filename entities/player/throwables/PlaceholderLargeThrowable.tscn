@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8elap8dki3xt"]
+
+[ext_resource type="Script" uid="uid://0k2vo8qh4bhe" path="res://entities/player/throwables/Throwable.gd" id="1_7les5"]
+[ext_resource type="Texture2D" uid="uid://d3tbeo55vsc2u" path="res://entities/player/throwables/throwable_placeholder_large.png" id="2_7les5"]
+[ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="3_jes36"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hre3"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjwnt"]
+radius = 9.0
+
+[node name="PlaceholderLargeThrowable" type="RigidBody2D" node_paths=PackedStringArray("collider")]
+collision_layer = 0
+collision_mask = 130
+mass = 2.0
+script = ExtResource("1_7les5")
+collider = NodePath("CollisionShape2D")
+throw_force = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_7les5")
+offset = Vector2(-2.31, -2.285)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 130
+script = ExtResource("3_jes36")
+damage = 2
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_1hre3")
+debug_color = Color(0.904175, 0.282841, 0.310406, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bjwnt")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

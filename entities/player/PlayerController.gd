@@ -15,18 +15,36 @@ var wall_jump_input_cooldown: float = 0.0
 var last_wall_normal: Vector2 = Vector2.ZERO
 var is_wall_sliding: bool = false
 var gravity
+var throwable
+var projectile1
+var projectile2
 
 signal player_digging(mouse_pos: Vector2)
 
 func _ready():
 	gravity = get_gravity()
 	jump_velocity = -jump_velocity
+	projectile1 = load("uid://blltbftmyr58q") # Replace UID with whatever projectile is active
+	projectile2 = load("uid://b8elap8dki3xt")
+	throwable = projectile1
 	
 func _process(delta: float):
 	if Input.is_action_just_pressed("attack"):
 		#if position.direction_to(get_global_mouse_position()) < DIGGING_RANGE:
 		player_digging.emit(get_global_mouse_position())
-		
+	
+	# Placeholder throwable switching
+	if Input.is_action_just_pressed("weapon1"):
+		throwable = projectile1
+	if Input.is_action_just_pressed("weapon2"):
+		throwable = projectile2
+	
+	if Input.is_action_just_pressed("attack2"):
+		var projectile = throwable.instantiate() as Throwable 
+		projectile.position = self.position + Vector2(0, -16)
+		var direction = (get_global_mouse_position() - self.position).normalized()
+		projectile.throw(projectile.throw_force, direction)
+		get_parent().add_child(projectile)
 
 func _physics_process(delta: float):
 	if wall_jump_input_cooldown > 0.0:

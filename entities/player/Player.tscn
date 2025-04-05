@@ -1,15 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqvulu7v5gdkl"]
+[gd_scene load_steps=7 format=3 uid="uid://bqvulu7v5gdkl"]
 
 [ext_resource type="Script" uid="uid://hqhyrxfxvggf" path="res://entities/player/PlayerController.gd" id="1_453mm"]
 [ext_resource type="Texture2D" uid="uid://2jngh4w3v3g2" path="res://entities/player/PlaceHolderPlayer.png" id="1_mab2k"]
+[ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="2_eaotn"]
 [ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="3_l3c03"]
 [ext_resource type="Texture2D" uid="uid://comgvxx6w6enq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_eaotn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_453mm"]
-size = Vector2(16, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lhm"]
+size = Vector2(20, 30)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eaotn"]
+radius = 7.0
+height = 28.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health")]
 script = ExtResource("1_453mm")
+player_health = NodePath("Health")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -38.725)
+zoom = Vector2(2.35, 2.35)
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("2_eaotn")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_g3lhm")
+debug_color = Color(0.401383, 0.59061, 0.421071, 0.42)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_l3c03")
+metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_eaotn")
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -17,21 +45,7 @@ script = ExtResource("1_453mm")
 texture = ExtResource("1_mab2k")
 offset = Vector2(0, -14.17)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_453mm")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -38.725)
-zoom = Vector2(2.35, 2.35)
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_l3c03")
-metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
-
-[node name="Lighting" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"][node name="Lighting" type="Node2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting"]
 color = Color(0.753214, 0.752446, 7.70092e-07, 1)
