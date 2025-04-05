@@ -23,6 +23,6 @@ func _input(event: InputEvent) -> void:
 		
 func make_level():
 	tilemap_floor.clear()
-	for tile in level_maker.make_floor():
-		tilemap_floor.set_cell(tile, 0, TEST_TILE)
+	for tile in level_maker.make_floor(200):
+		tilemap_floor.set_cell(tile, 1, TEST_TILE)
 	camera_2d.position = tilemap_floor.map_to_local(tilemap_floor.get_used_rect().get_center())
