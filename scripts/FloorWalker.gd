@@ -7,7 +7,7 @@ var direction: Vector2i
 
 func _init(new_position: Vector2i = Vector2i.ZERO, new_direction: Vector2i = Vector2i.RIGHT) -> void:
 	position = new_position
-	direction = new_direction
+	direction = CARDINAL_DIR.pick_random()
 
 func step() -> Vector2i:
 	position += direction

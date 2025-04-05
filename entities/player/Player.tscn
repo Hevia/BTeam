@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqvulu7v5gdkl"]
+[gd_scene load_steps=6 format=3 uid="uid://bqvulu7v5gdkl"]
 
 [ext_resource type="Script" uid="uid://hqhyrxfxvggf" path="res://entities/player/PlayerController.gd" id="1_453mm"]
 [ext_resource type="Texture2D" uid="uid://2jngh4w3v3g2" path="res://entities/player/PlaceHolderPlayer.png" id="1_mab2k"]
 [ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="3_l3c03"]
+[ext_resource type="Texture2D" uid="uid://comgvxx6w6enq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_eaotn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_453mm"]
 size = Vector2(16, 28)
@@ -29,3 +30,9 @@ zoom = Vector2(2.35, 2.35)
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_l3c03")
 metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
+color = Color(0.753214, 0.752446, 7.70092e-07, 1)
+texture = ExtResource("4_eaotn")

@@ -1,8 +1,8 @@
 class_name LevelMaker extends RefCounted
 
 
-# 110 is what nuclear throne uses
-func make_floor(num_floor_tiles: int = 110) -> Array[Vector2i]:
+
+func make_floor(viewport_size: Vector2, num_floor_tiles: int = 300) -> Array[Vector2i]:
 	var floor_walkers: Array[FloorWalker] = [FloorWalker.new(), FloorWalker.new()]
 	var floor: Array[Vector2i] = [floor_walkers[0].position] # Starting value
 	
