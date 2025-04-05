@@ -36,7 +36,7 @@ max_health = 6
 metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_sxwoi")
 health = NodePath("../Health")
