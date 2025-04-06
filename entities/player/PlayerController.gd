@@ -1,13 +1,13 @@
 class_name Player extends CharacterBody2D
 
 @export var player_health: Health
-@export var max_speed: float = 300
-@export var acceleration_speed: float = 100
-@export var deceleration_speed: float = 100
-@export var jump_velocity: float = 400
+@export var max_speed: float = 200
+@export var acceleration_speed: float = 50
+@export var deceleration_speed: float = 50
+@export var jump_velocity: float = 350
 @export var wall_slide_slow: float = 4
-@export var wall_jump_force: float = 800
-@export var wall_jump_lerp_weight: float = 100
+@export var wall_jump_force: float = 650
+@export var wall_jump_lerp_speed: float = 100
 @export var DIGGING_RANGE  = 150.00 # dont type hint this with float or else it throws an error
 @export var throw_force: float = 650
 
@@ -89,10 +89,10 @@ func handle_wall_jump(delta: float):
 	if abs(wall_jump_kick_speed) < wall_jump_force and is_wall_jumping:
 		var target_x_velocity = last_wall_normal.x * wall_jump_force
 		
-		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, target_x_velocity, wall_jump_lerp_weight)
+		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, target_x_velocity, wall_jump_lerp_speed)
 	else:
 		is_wall_jumping = false
-		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, 0.0, wall_jump_lerp_weight)
+		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, 0.0, wall_jump_lerp_speed)
 	
 	var on_wall = is_on_wall_only() and !is_on_floor()
 	

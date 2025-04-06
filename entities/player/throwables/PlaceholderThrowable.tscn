@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://blltbftmyr58q"]
+[gd_scene load_steps=7 format=3 uid="uid://blltbftmyr58q"]
 
 [ext_resource type="Texture2D" uid="uid://devop2erat1yo" path="res://entities/player/assets/throwable_placeholder.png" id="1_6681x"]
 [ext_resource type="Script" uid="uid://0k2vo8qh4bhe" path="res://entities/player/throwables/Throwable.gd" id="1_ym2nb"]
@@ -9,6 +9,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_bjwnt"]
 radius = 6.92816
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ym2nb"]
+polygon = PackedVector2Array(0, -7, 2.66231, -6.38023, 5, -5, 6.50198, -2.71249, 7, 0, 6.55928, 2.78913, 5, 5, 2.77692, 6.45688, 0, 7, -2.72469, 6.39957, -5, 5, -6.50706, 2.73182, -7, 0, -6.44975, -2.71249, -5, -5, -2.89662, -6.38023)
+
 [node name="PlaceholderThrowable" type="RigidBody2D" node_paths=PackedStringArray("collider", "hitbox")]
 collision_layer = 8
 collision_mask = 138
@@ -17,6 +20,7 @@ collider = NodePath("CollisionShape2D")
 hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_6681x")
 offset = Vector2(-2.145, -2.015)
@@ -33,5 +37,8 @@ debug_color = Color(0.904175, 0.282841, 0.310406, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bjwnt")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ym2nb")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
