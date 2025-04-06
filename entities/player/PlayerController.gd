@@ -14,6 +14,7 @@ class_name Player extends CharacterBody2D
 @export var jump_velocity: float = 350
 @export var wall_slide_slow: float = 4
 @export var wall_jump_force: float = 650
+@export var wall_jump_max_speed: float = 100
 @export var wall_jump_lerp_speed: float = 100
 @export var DIGGING_RANGE  = 150.00 # dont type hint this with float or else it throws an error
 @export var throw_force: float = 650
@@ -93,7 +94,7 @@ func _physics_process(delta: float):
 	velocity += gravity * delta
 	
 	handle_jump()
-	handle_movement()
+	handle_movement(delta)
 	handle_wall_jump(delta)
 	
 	move_and_slide()
@@ -113,12 +114,12 @@ func handle_jump():
 func handle_wall_jump(delta: float):
 	if abs(wall_jump_kick_speed) < wall_jump_force and is_wall_jumping:
 		var target_x_velocity = last_wall_normal.x * wall_jump_force
-		
 		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, target_x_velocity, wall_jump_lerp_speed)
 	else:
 		is_wall_jumping = false
 		wall_jump_kick_speed = move_toward(wall_jump_kick_speed, 0.0, wall_jump_lerp_speed)
 	
+	wall_jump_kick_speed = clamp(wall_jump_kick_speed, -wall_jump_max_speed, wall_jump_max_speed)
 	var on_wall = is_on_wall_only() and !is_on_floor()
 	
 	# Wall sliding
@@ -135,7 +136,7 @@ func handle_wall_jump(delta: float):
 	else:
 		can_wall_jump = false
 
-func handle_movement():
+func handle_movement(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
@@ -144,9 +145,16 @@ func handle_movement():
 	else:
 		target_move_speed = move_toward(target_move_speed, 0, deceleration_speed)
 	
+	print("is_wall_jumping " + str(is_wall_jumping))
+	print("wall_jump_kick_speed: " + str(wall_jump_kick_speed))
+	
 	# Apply Movement
 	velocity.x = target_move_speed + wall_jump_kick_speed
 	velocity.x = clamp(velocity.x, -max_speed, max_speed)
+	
+	if is_on_floor():
+		is_wall_jumping = false
+		wall_jump_kick_speed = 0.0
 	
 	# Sprite flipping based on direction
 	if direction > 0:
