@@ -1,6 +1,9 @@
 class_name Player extends CharacterBody2D
 
 @export var player_health: Health
+@export var visuals: Node2D
+@export var animation_player: AnimationPlayer
+@export var projectile_spawn: Marker2D
 @export var max_speed: float = 200
 @export var acceleration_speed: float = 50
 @export var deceleration_speed: float = 50
@@ -24,6 +27,9 @@ var is_wall_jumping: bool = false
 var player = self
 
 signal player_digging(mouse_pos: Vector2)
+
+enum AnimState {IDLE, WALKING, JUMP_RISE, JUMP_FALL, SWING, WALL_SLIDE}
+var _animstate: AnimState = AnimState.IDLE
 
 # Upgrade arrays! :D
 var throwable_upgrades : Array[BaseUpgradeStrategy] = []
@@ -54,7 +60,7 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("attack2"):
 		# Spawn it and place it
 		var projectile = throwable.instantiate() as Throwable
-		projectile.position = self.position + Vector2(0, -16)
+		projectile.position = projectile_spawn.global_position
 		var direction = (get_global_mouse_position() - self.position).normalized()
 		
 		# Apply upgrades!
@@ -66,6 +72,9 @@ func _process(delta: float):
 		# Throw it!
 		projectile.throw(projectile.throw_force, direction)
 		get_parent().add_child(projectile)
+	
+	# Animation stuff
+	animation_machine()
 
 func _physics_process(delta: float):
 	# Add the gravity.
@@ -126,7 +135,46 @@ func handle_movement():
 	# Apply Movement
 	velocity.x = target_move_speed + wall_jump_kick_speed
 	velocity.x = clamp(velocity.x, -max_speed, max_speed)
+	
+	# Sprite flipping based on direction
+	if direction > 0:
+		visuals.scale.x = 1 # Facing right
+	elif direction < 0:
+		visuals.scale.x = -1 # Facing left
 
+func animation_machine():
+	if is_on_floor():
+		if velocity.x == 0:
+			set_state(AnimState.IDLE)
+		else:
+			set_state(AnimState.WALKING)
+	elif is_wall_sliding:
+		set_state(AnimState.WALL_SLIDE)
+	else:
+		if velocity.y > 0:
+			set_state(AnimState.JUMP_FALL)
+		else:
+			set_state(AnimState.JUMP_RISE)
+
+func set_state(new_state: AnimState) -> void:
+	if new_state == _animstate:
+		return
+	
+	_animstate = new_state
+	
+	match _animstate:
+		AnimState.IDLE:
+			animation_player.play("idle")
+		AnimState.WALKING:
+			animation_player.play("walk_full")
+		AnimState.JUMP_RISE:
+			animation_player.play("jump_rise")
+		AnimState.JUMP_FALL:
+			animation_player.play("jump_rise")
+		AnimState.SWING:
+			animation_player.play("swing_full")
+		AnimState.WALL_SLIDE:
+			animation_player.play("wall_hold")
 
 func _on_player_upgrade_upgrade_get() -> void:
 	for strategy in player_upgrades:
