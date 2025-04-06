@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=15 format=4 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
 [ext_resource type="PackedScene" uid="uid://ijiaoxwmkwto" path="res://Objects/ThrowableUpgrade.tscn" id="3_i3fi7"]
-[ext_resource type="Resource" uid="uid://b6n7j7n7kuwfw" path="res://global/Strategy/Resources/damage.tres" id="4_o8wgc"]
+[ext_resource type="Resource" uid="uid://dmm7ary5w646c" path="res://global/Strategy/Resources/Throwables/DamageThrowable.tres" id="5_5s61s"]
 [ext_resource type="Texture2D" uid="uid://ct0qia11tqfe5" path="res://assets/Base.png" id="5_o8wgc"]
 [ext_resource type="TileSet" uid="uid://5vaa463jk1fq" path="res://resources/MainPlaceholder.tres" id="6_w20t6"]
+[ext_resource type="PackedScene" uid="uid://d2bmjnd5g7kb0" path="res://Objects/PlayerUpgrade.tscn" id="7_aw1lf"]
+[ext_resource type="Resource" uid="uid://befbmhj641ngm" path="res://global/Strategy/Resources/Player/PlayerSpeed.tres" id="8_5s61s"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_w20t6"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 1, 65537, 0, 65537, 65537, 1, 131073, 65537, 2, 2, 65537, 0, 65538, 65537, 1, 131074, 65537, 2, 3, 65537, 0, 65539, 65537, 1, 131075, 65537, 2, 4, 131073, 0, 65540, 131073, 1, 131076, 131073, 2)
@@ -92,8 +94,7 @@ position = Vector2(-149, 0)
 
 [node name="ThrowableUpgrade" parent="." instance=ExtResource("3_i3fi7")]
 position = Vector2(-104, -17)
-throwable_strategy = ExtResource("4_o8wgc")
-needs_update = false
+throwable_strategy = ExtResource("5_5s61s")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 light_mask = 2
@@ -103,3 +104,9 @@ tile_set = ExtResource("6_w20t6")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.1024, 0.0736, 0.16, 1)
+
+[node name="PlayerUpgrade" parent="." instance=ExtResource("7_aw1lf")]
+position = Vector2(-56, -16)
+player_strategy = ExtResource("8_5s61s")
+
+[connection signal="upgrade_get" from="PlayerUpgrade" to="Player" method="_on_player_upgrade_upgrade_get"]

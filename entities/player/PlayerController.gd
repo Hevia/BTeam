@@ -21,11 +21,13 @@ var projectile2
 var target_move_speed: float = 0.0
 var wall_jump_kick_speed: float = 0.0
 var is_wall_jumping: bool = false
+var player = self
 
 signal player_digging(mouse_pos: Vector2)
 
 # Upgrade arrays! :D
-var throwable_upgrades : Array[BaseThrowableStrategy] = []
+var throwable_upgrades : Array[BaseUpgradeStrategy] = []
+var player_upgrades : Array[BaseUpgradeStrategy] = []
 
 func _ready():
 	gravity = get_gravity()
@@ -47,6 +49,7 @@ func _process(delta: float):
 		throwable = projectile1
 	if Input.is_action_just_pressed("weapon2"):
 		throwable = projectile2
+		print(max_speed, " - ", acceleration_speed)
 	
 	# Throw attack
 	if Input.is_action_just_pressed("attack2"):
@@ -57,7 +60,7 @@ func _process(delta: float):
 		
 		# Apply upgrades!
 		for strategy in throwable_upgrades:
-			strategy.apply_upgrade(projectile)
+			strategy.apply_throwable_upgrade(projectile)
 		
 		# Throw it!
 		projectile.throw(projectile.throw_force, direction)
@@ -122,3 +125,8 @@ func handle_movement():
 	# Apply Movement
 	velocity.x = target_move_speed + wall_jump_kick_speed
 	velocity.x = clamp(velocity.x, -max_speed, max_speed)
+
+
+func _on_player_upgrade_upgrade_get() -> void:
+	for strategy in player_upgrades:
+			strategy.apply_player_upgrade(player)
