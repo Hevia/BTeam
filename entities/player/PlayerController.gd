@@ -49,7 +49,6 @@ func _process(delta: float):
 		throwable = projectile1
 	if Input.is_action_just_pressed("weapon2"):
 		throwable = projectile2
-		print(max_speed, " - ", acceleration_speed)
 	
 	# Throw attack
 	if Input.is_action_just_pressed("attack2"):
@@ -61,6 +60,8 @@ func _process(delta: float):
 		# Apply upgrades!
 		for strategy in throwable_upgrades:
 			strategy.apply_throwable_upgrade(projectile)
+		
+		print(projectile.throw_force)
 		
 		# Throw it!
 		projectile.throw(projectile.throw_force, direction)

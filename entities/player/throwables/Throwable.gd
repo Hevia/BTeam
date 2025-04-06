@@ -3,7 +3,7 @@ extends RigidBody2D
 
 @export var collider: CollisionShape2D
 @export var projectile_damage: int = 1
-@export var throw_force: float = 640
+@export var throw_force: float = 650
 @export var projectile_lifetime: float = 6
 @export var hitbox: Hitbox
 

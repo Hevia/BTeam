@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=16 format=4 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
 [ext_resource type="PackedScene" uid="uid://ijiaoxwmkwto" path="res://Objects/ThrowableUpgrade.tscn" id="3_i3fi7"]
 [ext_resource type="Resource" uid="uid://dmm7ary5w646c" path="res://global/Strategy/Resources/Throwables/DamageThrowable.tres" id="5_5s61s"]
 [ext_resource type="Texture2D" uid="uid://ct0qia11tqfe5" path="res://assets/Base.png" id="5_o8wgc"]
+[ext_resource type="Resource" uid="uid://brufxusxacwqi" path="res://global/Strategy/Resources/Throwables/SpeedThrowable.tres" id="6_7npjy"]
 [ext_resource type="TileSet" uid="uid://5vaa463jk1fq" path="res://resources/MainPlaceholder.tres" id="6_w20t6"]
 [ext_resource type="PackedScene" uid="uid://d2bmjnd5g7kb0" path="res://Objects/PlayerUpgrade.tscn" id="7_aw1lf"]
 [ext_resource type="Resource" uid="uid://befbmhj641ngm" path="res://global/Strategy/Resources/Player/PlayerSpeed.tres" id="8_5s61s"]
@@ -95,6 +96,10 @@ position = Vector2(-149, 0)
 [node name="ThrowableUpgrade" parent="." instance=ExtResource("3_i3fi7")]
 position = Vector2(-104, -17)
 throwable_strategy = ExtResource("5_5s61s")
+
+[node name="ThrowableUpgrade2" parent="." instance=ExtResource("3_i3fi7")]
+position = Vector2(61, -17)
+throwable_strategy = ExtResource("6_7npjy")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 light_mask = 2
