@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://bejrwxpqa6uuu"]
+
+[ext_resource type="Texture2D" uid="uid://ch0k22y43ffbt" path="res://UI/assets/MainMenuBG.png" id="1_cdkru"]
+[ext_resource type="Script" uid="uid://c2qsgxxh6l72" path="res://Scenes/MainMenu/main_menu.gd" id="1_kpx3y"]
+[ext_resource type="Texture2D" uid="uid://dffwcdcw4dgsj" path="res://UI/assets/Button01.png" id="2_sg7ab"]
+[ext_resource type="FontFile" uid="uid://4jl18bdnlikc" path="res://assets/Fonts/dpcomic.regular.ttf" id="3_kpx3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sg7ab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpx3y"]
+bg_color = Color(0.894531, 0.279541, 0.279541, 0.129412)
+border_width_left = 6
+border_width_top = 2
+border_width_right = 6
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg7ab"]
+bg_color = Color(0.37, 0.2035, 0.2035, 0.286275)
+border_width_left = 6
+border_width_top = 2
+border_width_right = 6
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kpx3y"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kpx3y")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cdkru")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 83.0
+offset_top = 38.0
+offset_right = 292.0
+offset_bottom = 154.0
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(115, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kpx3y")
+theme_override_font_sizes/font_size = 62
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sg7ab")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kpx3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sg7ab")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kpx3y")
+text = "Play"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Play"]
+show_behind_parent = true
+custom_minimum_size = Vector2(115, 80)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sg7ab")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(115, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kpx3y")
+theme_override_font_sizes/font_size = 62
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sg7ab")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kpx3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sg7ab")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kpx3y")
+text = "Exit"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Quit"]
+show_behind_parent = true
+custom_minimum_size = Vector2(115, 55)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -41.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sg7ab")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+offset_left = 89.0
+offset_top = 119.0
+offset_right = 384.0
+offset_bottom = 204.0
+theme_override_fonts/normal_font = ExtResource("3_kpx3y")
+theme_override_font_sizes/normal_font_size = 72
+text = "Abyss Mole"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
