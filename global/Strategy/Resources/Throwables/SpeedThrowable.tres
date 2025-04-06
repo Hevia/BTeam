@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpeedThrowableStrategy" load_steps=3 format=3 uid="uid://brufxusxacwqi"]
+
+[ext_resource type="Script" uid="uid://dx5yi1mqb2mkv" path="res://global/Strategy/Scripts/Throwables/speed_throwable_strategy.gd" id="1_jr4t8"]
+[ext_resource type="Texture2D" uid="uid://sip43dter4i0" path="res://assets/Objects/UpgradeSpeedPlaceholder.png" id="2_jr4t8"]
+
+[resource]
+script = ExtResource("1_jr4t8")
+texture = ExtResource("2_jr4t8")
+upgrade_text = "Throw!"
+metadata/_custom_type_script = "uid://dx5yi1mqb2mkv"

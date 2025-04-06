@@ -10,13 +10,15 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_bjwnt"]
 radius = 9.0
 
-[node name="PlaceholderLargeThrowable" type="RigidBody2D" node_paths=PackedStringArray("collider")]
-collision_layer = 0
-collision_mask = 130
-mass = 2.0
+[node name="PlaceholderLargeThrowable" type="RigidBody2D" node_paths=PackedStringArray("collider", "hitbox")]
+collision_layer = 8
+collision_mask = 138
+mass = 3.29
 script = ExtResource("1_7les5")
 collider = NodePath("CollisionShape2D")
+projectile_damage = 2
 throw_force = 200.0
+hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.65, 0.65)
@@ -25,9 +27,8 @@ offset = Vector2(-2.31, -2.285)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 130
+collision_mask = 128
 script = ExtResource("3_jes36")
-damage = 2
 metadata/_custom_type_script = "uid://donmvmp38kkto"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

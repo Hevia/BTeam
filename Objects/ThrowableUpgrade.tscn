@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ijiaoxwmkwto"]
+
+[ext_resource type="Script" uid="uid://c7e28xgejkjui" path="res://global/throwable_upgrade.gd" id="1_or7ub"]
+[ext_resource type="Script" uid="uid://doelk0fgsketv" path="res://global/Strategy/Scripts/base_upgrade_strategy.gd" id="2_j6srk"]
+[ext_resource type="Texture2D" uid="uid://c1ecysp4ypwik" path="res://assets/Objects/UpgradeBlank.png" id="3_03rwa"]
+
+[sub_resource type="Resource" id="Resource_03rwa"]
+script = ExtResource("2_j6srk")
+texture = ExtResource("3_03rwa")
+upgrade_text = "Blank!"
+metadata/_custom_type_script = "uid://doelk0fgsketv"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03rwa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_03rwa"]
+font_size = 9
+
+[node name="ThrowableUpgrade" type="Area2D" node_paths=PackedStringArray("upgrade_label", "sprite")]
+script = ExtResource("1_or7ub")
+upgrade_label = NodePath("UpgradeLabel")
+sprite = NodePath("Sprite2D")
+throwable_strategy = SubResource("Resource_03rwa")
+needs_update = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_03rwa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_03rwa")
+
+[node name="UpgradeLabel" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = -6.0
+text = "Blank!"
+label_settings = SubResource("LabelSettings_03rwa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

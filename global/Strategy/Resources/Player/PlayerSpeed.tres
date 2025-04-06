@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerSpeedUpgradeStrategy" load_steps=3 format=3 uid="uid://befbmhj641ngm"]
+
+[ext_resource type="Script" uid="uid://blkv54ku8ksw6" path="res://global/Strategy/Scripts/Player/player_speed_upgrade_strategy.gd" id="1_ee4nd"]
+[ext_resource type="Texture2D" uid="uid://clfvtuv7s1o5k" path="res://assets/Objects/PlayerUpgradeSpeed.png" id="2_ee4nd"]
+
+[resource]
+script = ExtResource("1_ee4nd")
+texture = ExtResource("2_ee4nd")
+upgrade_text = "Speed!"
+metadata/_custom_type_script = "uid://blkv54ku8ksw6"

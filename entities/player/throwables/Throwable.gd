@@ -1,12 +1,16 @@
-extends RigidBody2D
 class_name Throwable
+extends RigidBody2D
 
 @export var collider: CollisionShape2D
-@export var throw_force: float = 640
+@export var projectile_damage: int = 1
+@export var throw_force: float = 650
 @export var projectile_lifetime: float = 6
+@export var hitbox: Hitbox
 
 func _ready():
 	add_to_group("throwables")
+	if hitbox is Hitbox:
+		hitbox.damage = projectile_damage
 
 func _physics_process(delta: float):
 	projectile_lifetime -= delta
@@ -19,4 +23,5 @@ func throw(initial_force: float, direction: Vector2):
 	apply_central_impulse(impulse)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	queue_free()
+	#queue_free()
+	pass

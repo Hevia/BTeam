@@ -1,5 +1,5 @@
-extends Area2D
 class_name Hurtbox
+extends Area2D
 
 signal received_damage(damage: float)
 
@@ -10,8 +10,8 @@ func _ready():
 
 
 func _on_area_entered(hitbox: Hitbox) -> void:
-	print("Projectile Hit")
 	if hitbox != null:
-		print("projectile damaged!")
 		health.health -= hitbox.damage
 		received_damage.emit(hitbox.damage)
+	if hitbox.get_parent() is Throwable:
+		hitbox.get_parent().queue_free()
