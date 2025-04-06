@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2bmjnd5g7kb0"]
+[gd_scene load_steps=7 format=3 uid="uid://d2bmjnd5g7kb0"]
 
-[ext_resource type="Texture2D" uid="uid://bxdmx8jd8coq8" path="res://assets/Objects/PlayerUpgradeBlank.png" id="1_r4t4a"]
 [ext_resource type="Script" uid="uid://bcn7pl38dpvsc" path="res://global/player_upgrade.gd" id="1_wv7rf"]
 [ext_resource type="Script" uid="uid://doelk0fgsketv" path="res://global/Strategy/Scripts/base_upgrade_strategy.gd" id="2_o3xcg"]
 [ext_resource type="Texture2D" uid="uid://c1ecysp4ypwik" path="res://assets/Objects/UpgradeBlank.png" id="3_cej07"]
@@ -21,12 +20,13 @@ script = ExtResource("1_wv7rf")
 upgrade_label = NodePath("UpgradeLabel")
 sprite = NodePath("Sprite2D")
 player_strategy = SubResource("Resource_d6pne")
+needs_update = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o3xcg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_r4t4a")
+texture = ExtResource("3_cej07")
 
 [node name="UpgradeLabel" type="Label" parent="."]
 offset_left = -23.0
