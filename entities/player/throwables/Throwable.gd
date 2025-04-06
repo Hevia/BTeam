@@ -2,11 +2,15 @@ extends RigidBody2D
 class_name Throwable
 
 @export var collider: CollisionShape2D
+@export var projectile_damage: int = 1
 @export var throw_force: float = 640
 @export var projectile_lifetime: float = 6
+@export var hitbox: Hitbox
 
 func _ready():
 	add_to_group("throwables")
+	if hitbox is Hitbox:
+		hitbox.damage = projectile_damage
 
 func _physics_process(delta: float):
 	projectile_lifetime -= delta

@@ -47,10 +47,10 @@ func _process(delta: float):
 	
 	# Throw attack
 	if Input.is_action_just_pressed("attack2"):
-		var projectile = throwable.instantiate() as Throwable 
+		var projectile = throwable.instantiate() as Throwable
 		projectile.position = self.position + Vector2(0, -16)
 		var direction = (get_global_mouse_position() - self.position).normalized()
-		projectile.throw(throw_force, direction)
+		projectile.throw(projectile.throw_force, direction)
 		get_parent().add_child(projectile)
 
 func _physics_process(delta: float):

@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqvulu7v5gdkl"]
+[gd_scene load_steps=7 format=3 uid="uid://bqvulu7v5gdkl"]
 
 [ext_resource type="Script" uid="uid://hqhyrxfxvggf" path="res://entities/player/PlayerController.gd" id="1_453mm"]
 [ext_resource type="Texture2D" uid="uid://2jngh4w3v3g2" path="res://entities/player/PlaceHolderPlayer.png" id="1_mab2k"]
 [ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="2_eaotn"]
 [ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="3_l3c03"]
-[ext_resource type="Script" uid="uid://jc6q63re6rts" path="res://entities/player/enemy_target.gd" id="5_g3lhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lhm"]
 size = Vector2(20, 30)
@@ -46,12 +45,3 @@ texture = ExtResource("1_mab2k")
 offset = Vector2(0, -14.17)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
-
-[node name="EnemyTarget" type="Marker2D" parent="."]
-script = ExtResource("5_g3lhm")
-
-[node name="ColorRect" type="ColorRect" parent="EnemyTarget"]
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
