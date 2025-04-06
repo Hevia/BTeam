@@ -14,9 +14,9 @@ class_name Player extends CharacterBody2D
 @export var jump_velocity: float = 350
 @export var wall_slide_slow: float = 4
 @export var wall_jump_force: float = 650
-@export var wall_jump_max_speed: float = 100
-@export var wall_jump_lerp_speed: float = 100
-@export var DIGGING_RANGE  = 150.00 # dont type hint this with float or else it throws an error
+@export var wall_jump_max_speed: float = 100 # nevermind dont go past 100 lol
+@export var wall_jump_lerp_speed: float = 150
+@export var DIGGING_RANGE: int  = 150
 @export var throw_force: float = 650
 
 var can_wall_jump: bool = false
@@ -55,8 +55,6 @@ func _ready():
 func _process(delta: float):
 	# Dig Attack
 	if Input.is_action_just_pressed("attack"):
-		#if position.direction_to(get_global_mouse_position()) < DIGGING_RANGE:
-		player_digging.emit(get_global_mouse_position())
 		is_swinging = true
 	
 	# For testing level gen and making sure it works
@@ -228,6 +226,10 @@ func set_state(new_state: AnimState) -> void:
 func animation_ended():
 	is_swinging = false
 	current_frame = 0
+
+func emit_player_digging():
+	# TODO: Digging radius check
+	player_digging.emit(get_global_mouse_position())
 
 func _on_player_upgrade_upgrade_get() -> void:
 	for strategy in player_upgrades:
