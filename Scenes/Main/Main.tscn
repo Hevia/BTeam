@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=10 format=3 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
+[ext_resource type="PackedScene" uid="uid://ijiaoxwmkwto" path="res://Objects/ThrowableUpgrade.tscn" id="3_i3fi7"]
+[ext_resource type="Resource" uid="uid://b6n7j7n7kuwfw" path="res://global/Strategy/Resources/damage.tres" id="4_o8wgc"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p8rbg"]
 
@@ -78,3 +80,8 @@ shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="TestDummy" parent="." instance=ExtResource("2_qtv3y")]
 position = Vector2(-149, 0)
+
+[node name="ThrowableUpgrade" parent="." instance=ExtResource("3_i3fi7")]
+position = Vector2(-104, -17)
+throwable_strategy = ExtResource("4_o8wgc")
+needs_update = false

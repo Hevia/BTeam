@@ -1,5 +1,5 @@
-extends Node
 class_name Health
+extends Node
 
 signal max_health_changed(difference: int)
 signal health_changed(difference: int)

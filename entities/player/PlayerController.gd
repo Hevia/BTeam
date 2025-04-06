@@ -24,6 +24,9 @@ var is_wall_jumping: bool = false
 
 signal player_digging(mouse_pos: Vector2)
 
+# Upgrade arrays! :D
+var throwable_upgrades : Array[BaseThrowableStrategy] = []
+
 func _ready():
 	gravity = get_gravity()
 	jump_velocity = -jump_velocity
@@ -47,9 +50,16 @@ func _process(delta: float):
 	
 	# Throw attack
 	if Input.is_action_just_pressed("attack2"):
+		# Spawn it and place it
 		var projectile = throwable.instantiate() as Throwable
 		projectile.position = self.position + Vector2(0, -16)
 		var direction = (get_global_mouse_position() - self.position).normalized()
+		
+		# Apply upgrades!
+		for strategy in throwable_upgrades:
+			strategy.apply_upgrade(projectile)
+		
+		# Throw it!
 		projectile.throw(projectile.throw_force, direction)
 		get_parent().add_child(projectile)
 

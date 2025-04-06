@@ -1,5 +1,5 @@
-extends RigidBody2D
 class_name Throwable
+extends RigidBody2D
 
 @export var collider: CollisionShape2D
 @export var projectile_damage: int = 1

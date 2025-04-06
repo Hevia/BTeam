@@ -1,5 +1,5 @@
-extends Area2D
 class_name Hurtbox
+extends Area2D
 
 signal received_damage(damage: float)
 
