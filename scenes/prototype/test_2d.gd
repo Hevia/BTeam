@@ -1,9 +1,9 @@
 extends Node2D
 
-const TEST_TILE =  Vector2i(1,1)
+const TEST_TILE =  Vector2i(1,0)
+const BEDROCK_TILE = Vector2i(1,1)
 
 @export var tilemap_floor: TileMapLayer
-@export var camera_2d: Camera2D
 @export var player: Player
 
 @onready var level_maker: LevelMaker = LevelMaker.new()
@@ -18,18 +18,23 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("CAMERA_ZOOM_IN"):
 		get_viewport().set_input_as_handled()
-		camera_2d.zoom *= 1.1
 		return
 	if event.is_action_pressed("CAMERA_ZOOM_OUT"):
 		get_viewport().set_input_as_handled()
-		camera_2d.zoom /= 1.1
 		return
 		
 func make_level():
 	tilemap_floor.clear()
-	for tile in level_maker.make_floor(200):
+	var viewport_size = tilemap_floor.local_to_map(tilemap_floor.to_local(get_viewport_rect().size))   
+	var level = level_maker.make_floor(viewport_size)
+	var floor_tiles = level["floor_tiles"]
+	var bedrock_tiles = level["bedrock_tiles"]
+	print("Level size: " + str(floor_tiles.size()))
+	for tile in floor_tiles:
 		tilemap_floor.set_cell(tile, 1, TEST_TILE)
-	camera_2d.position = tilemap_floor.map_to_local(tilemap_floor.get_used_rect().get_center())
+	
+	for tile in bedrock_tiles:
+		tilemap_floor.set_cell(tile, 1, BEDROCK_TILE)
 
 func on_player_digging(mouse_pos: Vector2):
 	# Its a global mouse pos we need locally on the tilemap

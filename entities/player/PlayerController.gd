@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+@onready var camera_2d: Camera2D = $Camera2D
+
 @export var player_health: Health
 @export var visuals: Node2D
 @export var animation_player: AnimationPlayer
@@ -56,6 +58,10 @@ func _process(delta: float):
 		player_digging.emit(get_global_mouse_position())
 		is_swinging = true
 	
+	# For testing level gen and making sure it works
+	if Input.is_action_just_pressed("CAMERA_ZOOM_OUT"):
+		camera_2d.zoom /= 1.1
+		
 	# Placeholder throwable switching
 	if Input.is_action_just_pressed("weapon1"):
 		throwable = projectile1
