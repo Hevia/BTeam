@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D
 @export var player_health: Health
 @export var visuals: Node2D
 @export var animation_player: AnimationPlayer
+@export var sprite_main: Sprite2D
+@export var sprite_sub: Sprite2D
 @export var projectile_spawn: Marker2D
 @export var max_speed: float = 200
 @export var acceleration_speed: float = 50
@@ -25,11 +27,14 @@ var target_move_speed: float = 0.0
 var wall_jump_kick_speed: float = 0.0
 var is_wall_jumping: bool = false
 var player = self
+var is_swinging: bool = false
 
 signal player_digging(mouse_pos: Vector2)
 
-enum AnimState {IDLE, WALKING, JUMP_RISE, JUMP_FALL, SWING, WALL_SLIDE}
+enum AnimState {IDLE, WALKING, JUMP_RISE, JUMP_FALL, SWING, WALL_SLIDE, WALK_SWING, JUMP_RISE_SWING, JUMP_FALL_SWING}
 var _animstate: AnimState = AnimState.IDLE
+var current_frame: float = 0
+var anim_bool: bool = false
 
 # Upgrade arrays! :D
 var throwable_upgrades : Array[BaseUpgradeStrategy] = []
@@ -49,6 +54,7 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("attack"):
 		#if position.direction_to(get_global_mouse_position()) < DIGGING_RANGE:
 		player_digging.emit(get_global_mouse_position())
+		is_swinging = true
 	
 	# Placeholder throwable switching
 	if Input.is_action_just_pressed("weapon1"):
@@ -143,18 +149,32 @@ func handle_movement():
 		visuals.scale.x = -1 # Facing left
 
 func animation_machine():
-	if is_on_floor():
+	if is_swinging:
 		if velocity.x == 0:
-			set_state(AnimState.IDLE)
+			if _animstate == AnimState.WALK_SWING:
+				anim_bool = true
+				current_frame = sprite_main.frame
+				print(current_frame)
+			set_state(AnimState.SWING)
 		else:
-			set_state(AnimState.WALKING)
-	elif is_wall_sliding:
-		set_state(AnimState.WALL_SLIDE)
+			if _animstate == AnimState.SWING:
+				anim_bool = true
+				current_frame = sprite_main.frame
+				print(current_frame)
+			set_state(AnimState.WALK_SWING)
 	else:
-		if velocity.y > 0:
-			set_state(AnimState.JUMP_FALL)
+		if is_on_floor():
+			if velocity.x == 0:
+				set_state(AnimState.IDLE)
+			else:
+				set_state(AnimState.WALKING)
+		elif is_wall_sliding:
+			set_state(AnimState.WALL_SLIDE)
 		else:
-			set_state(AnimState.JUMP_RISE)
+			if velocity.y > 0:
+				set_state(AnimState.JUMP_FALL)
+			else:
+				set_state(AnimState.JUMP_RISE)
 
 func set_state(new_state: AnimState) -> void:
 	if new_state == _animstate:
@@ -170,11 +190,30 @@ func set_state(new_state: AnimState) -> void:
 		AnimState.JUMP_RISE:
 			animation_player.play("jump_rise")
 		AnimState.JUMP_FALL:
-			animation_player.play("jump_rise")
+			animation_player.play("jump_peak")
+			animation_player.queue("jump_fall")
 		AnimState.SWING:
-			animation_player.play("swing_full")
+			if anim_bool:
+				anim_bool = false
+				print("googoo")
+				animation_player.play("swing_full")
+				animation_player.seek(current_frame/10)
+			else:
+				animation_player.play("swing_full")
 		AnimState.WALL_SLIDE:
 			animation_player.play("wall_hold")
+		AnimState.WALK_SWING:
+			if anim_bool:
+				anim_bool = false
+				print("gaga")
+				animation_player.play("walk_swing")
+				animation_player.seek(current_frame/10)
+			else:
+				animation_player.play("walk_swing")
+
+func animation_ended():
+	is_swinging = false
+	current_frame = 0
 
 func _on_player_upgrade_upgrade_get() -> void:
 	for strategy in player_upgrades:
