@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerHealthupStrategy" load_steps=3 format=3 uid="uid://b335we3qdscps"]
+
+[ext_resource type="Script" uid="uid://7clr0w17h63p" path="res://global/Strategy/Scripts/Player/player_healthup_strategy.gd" id="1_8uup7"]
+[ext_resource type="Texture2D" uid="uid://bml3vt736atyy" path="res://UI/assets/heartfull.png" id="2_8uup7"]
+
+[resource]
+script = ExtResource("1_8uup7")
+texture = ExtResource("2_8uup7")
+upgrade_text = "Health up!"
+metadata/_custom_type_script = "uid://7clr0w17h63p"

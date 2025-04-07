@@ -32,7 +32,6 @@ offset = Vector2(-0.32, -30.06)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_fgg3s")
-max_health = 6
 metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]

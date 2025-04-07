@@ -10,8 +10,10 @@ func toggle_pause_menu():
 	self_opened = !self_opened
 	if self_opened:
 		self.visible = true
+		get_tree().paused = true
 	else:
 		self.visible = false
+		get_tree().paused = false
 
 func _on_resume_pressed() -> void:
 	toggle_pause_menu()

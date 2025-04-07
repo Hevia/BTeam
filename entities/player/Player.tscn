@@ -788,3 +788,10 @@ offset = Vector2(7.5, -8.5)
 hframes = 7
 
 [node name="Lighting" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
+color = Color(0.753214, 0.752446, 7.70092e-07, 1)
+texture = ExtResource("11_1ms0h")
+
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="max_health_changed" from="Health" to="." method="_on_health_max_health_changed"]

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+mouse_cursor/custom_image="uid://dmtwe4bb65hut"
 
 [input]
 
@@ -91,6 +92,7 @@ pause={
 
 [layer_names]
 
+2d_render/layer_20="UI"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_4="Projectiles"
