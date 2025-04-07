@@ -729,7 +729,7 @@ _data = {
 &"wall_hold": SubResource("Animation_ak4un")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health", "visuals", "animation_player", "sprite_main", "sprite_sub", "projectile_spawn")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health", "visuals", "animation_player", "sprite_main", "sprite_sub", "projectile_spawn") groups=["Player"]]
 script = ExtResource("1_453mm")
 player_health = NodePath("Health")
 visuals = NodePath("Visuals")

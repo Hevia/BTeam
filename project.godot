@@ -22,6 +22,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 mouse_cursor/custom_image="uid://dmtwe4bb65hut"
 
+[global_group]
+
+Player="Player group it holds the player (the player)"
+
 [input]
 
 move_up={
