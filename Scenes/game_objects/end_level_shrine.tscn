@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn4pwdiuvltow"]
+
+[ext_resource type="Script" uid="uid://djkwt3kpb7td1" path="res://Scenes/game_objects/end_level_shrine.gd" id="1_1vun2"]
+[ext_resource type="Texture2D" uid="uid://hlrqq6ypn4p8" path="res://assets/village props/TX Village Props.png" id="1_riayr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vun2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ox7x"]
+atlas = ExtResource("1_riayr")
+region = Rect2(702.379, 114.395, 35.3118, 77.7863)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ox7x"]
+size = Vector2(37, 81)
+
+[node name="EndLevelShrine" type="Node2D"]
+script = ExtResource("1_1vun2")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_1vun2")
+texture = SubResource("AtlasTexture_3ox7x")
+
+[node name="HurtArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
+position = Vector2(-0.5, -2.5)
+shape = SubResource("RectangleShape2D_3ox7x")

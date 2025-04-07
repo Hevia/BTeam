@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqvulu7v5gdkl"]
+[gd_scene load_steps=23 format=3 uid="uid://bqvulu7v5gdkl"]
 
 [ext_resource type="Script" uid="uid://hqhyrxfxvggf" path="res://entities/player/PlayerController.gd" id="1_453mm"]
 [ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="2_eaotn"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://d3mp1fpi8msjl" path="res://entities/player/assets/main sprite/abyssmoleswing-Sheet.png" id="8_rl6fg"]
 [ext_resource type="Texture2D" uid="uid://cx1lm6cct54fy" path="res://entities/player/assets/main sprite/abyssmolejump-Sheet.png" id="9_ak4un"]
 [ext_resource type="Texture2D" uid="uid://dx6p5r480hmvi" path="res://entities/player/assets/main sprite/abyssmoleswinghalf-Sheet.png" id="10_1ms0h"]
-[ext_resource type="Texture2D" uid="uid://comgvxx6w6enq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="11_1ms0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lhm"]
 size = Vector2(22, 30)
@@ -789,7 +788,3 @@ offset = Vector2(7.5, -8.5)
 hframes = 7
 
 [node name="Lighting" type="Node2D" parent="."]
-
-[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
-color = Color(0.753214, 0.752446, 7.70092e-07, 1)
-texture = ExtResource("11_1ms0h")

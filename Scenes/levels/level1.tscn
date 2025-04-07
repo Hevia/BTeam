@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dg17bgxwitrkt"]
+[gd_scene load_steps=16 format=4 uid="uid://dg17bgxwitrkt"]
 
 [ext_resource type="Script" uid="uid://bvl4vnes4hhbm" path="res://Scenes/levels/level.gd" id="1_qptf1"]
 [ext_resource type="Texture2D" uid="uid://b6fsacwwttuyx" path="res://assets/parallax_bg/7.png" id="2_d37s3"]
@@ -12,6 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://drfq3sfuq1vnt" path="res://Scenes/game_objects/lamp.tscn" id="9_lhsqt"]
 [ext_resource type="PackedScene" uid="uid://csr7xbbvnmuvv" path="res://Scenes/game_objects/dialog_trigger.tscn" id="10_1p2rh"]
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="10_hkrpn"]
+[ext_resource type="PackedScene" uid="uid://dblh7ya8ehb8u" path="res://Scenes/vfx/world_lighting.tscn" id="13_wrykp"]
+
+[sub_resource type="Gradient" id="Gradient_o8wgc"]
+offsets = PackedFloat32Array(0, 0.104651, 0.875969)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wrykp"]
+gradient = SubResource("Gradient_o8wgc")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.508547, 0.482906)
+fill_to = Vector2(1, 0.491453)
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("tilemap_floor", "player")]
 script = ExtResource("1_qptf1")
@@ -87,7 +100,15 @@ tile_set = ExtResource("9_ex736")
 [node name="Player" parent="." instance=ExtResource("10_hkrpn")]
 position = Vector2(37, 48)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.226707, 0.226707, 0.226707, 1)
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+show_behind_parent = true
+position = Vector2(0, -19)
+color = Color(0.589844, 0.392773, 0.218887, 1)
+energy = 1.2
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_wrykp")
 
 [node name="EntitesLayer" type="Node2D" parent="." groups=["entities_layer"]]
+
+[node name="CanvasModulate" parent="." instance=ExtResource("13_wrykp")]
