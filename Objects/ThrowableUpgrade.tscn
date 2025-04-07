@@ -20,6 +20,7 @@ script = ExtResource("1_or7ub")
 upgrade_label = NodePath("UpgradeLabel")
 sprite = NodePath("Sprite2D")
 throwable_strategy = SubResource("Resource_03rwa")
+needs_update = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_03rwa")
