@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcghyx5bsurk"
+path="res://.godot/imported/Nightmare Warp Loop.wav-cddcca8e88eb31be61f33dc113313587.sample"
+
+[deps]
+
+source_file="res://assets/audio/Nightmare Warp Loop.wav"
+dest_files=["res://.godot/imported/Nightmare Warp Loop.wav-cddcca8e88eb31be61f33dc113313587.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
