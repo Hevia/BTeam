@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1728cw1qn3a"]
+
+[ext_resource type="Script" uid="uid://c350h2albu4uj" path="res://Scenes/enemies/rat.gd" id="1_aow3c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_14nte"]
+
+[node name="Rat" type="CharacterBody2D"]
+script = ExtResource("1_aow3c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_14nte")
