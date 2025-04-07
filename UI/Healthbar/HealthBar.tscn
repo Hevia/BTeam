@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://naaxh1s136w" path="res://UI/Healthbar/HealthBar.gd" id="2_md0at"]
 
 [node name="Healthbar" type="GridContainer"]
-offset_left = 26.0
-offset_top = 30.0
-offset_right = 371.0
-offset_bottom = 104.0
+offset_left = 38.0
+offset_top = 39.0
+offset_right = 383.0
+offset_bottom = 113.0
 theme = ExtResource("1_odqoy")
 columns = 5
 script = ExtResource("2_md0at")

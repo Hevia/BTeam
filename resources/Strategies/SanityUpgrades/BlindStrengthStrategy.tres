@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlindStrengthStrategy" load_steps=3 format=3 uid="uid://cu033veffcsut"]
+
+[ext_resource type="Script" uid="uid://c1axntcbal48r" path="res://scripts/Strategies/SanityUpgrades/blind_strength_strategy.gd" id="1_vu2b0"]
+[ext_resource type="Texture2D" uid="uid://cbrekttrvbd5y" path="res://assets/sanity_upgrades/BlindStrength.png" id="2_vu2b0"]
+
+[resource]
+script = ExtResource("1_vu2b0")
+texture = ExtResource("2_vu2b0")
+upgrade_text = "Blind Strength!"
+metadata/_custom_type_script = "uid://c1axntcbal48r"

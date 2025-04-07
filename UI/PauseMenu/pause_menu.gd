@@ -1,7 +1,7 @@
 extends Control
 
 var self_opened = false
-var can_pause = true
+@onready var can_pause = true
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("pause") and can_pause:

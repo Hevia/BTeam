@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1w813v138hw4"]
+
+[ext_resource type="Theme" uid="uid://lrvg5eemjsdd" path="res://UI/UITheme1.tres" id="1_8hmq0"]
+[ext_resource type="Script" uid="uid://ccg4u2otl2dvb" path="res://Scenes/UI/sanity_bar/sanity_bar.gd" id="1_ikwon"]
+[ext_resource type="Texture2D" uid="uid://f7d7hfe3ani0" path="res://assets/UI/sanity_bar/sanity_bar_lower.png" id="1_lk6f7"]
+[ext_resource type="Texture2D" uid="uid://fyybwomyqex1" path="res://assets/UI/sanity_bar/sanity_bar_frame.png" id="2_8hmq0"]
+[ext_resource type="Texture2D" uid="uid://dwdn746eew7oc" path="res://assets/UI/sanity_bar/sanity_bar_fill.png" id="3_ikwon"]
+
+[node name="SanityBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ikwon")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7, 0.539, 0.539, 0.133333)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -145.0
+offset_right = 337.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme = ExtResource("1_8hmq0")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 80.0
+texture_under = ExtResource("1_lk6f7")
+texture_over = ExtResource("2_8hmq0")
+texture_progress = ExtResource("3_ikwon")

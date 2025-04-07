@@ -10,6 +10,10 @@ class_name Player extends CharacterBody2D
 @export var sprite_main: Sprite2D
 @export var sprite_sub: Sprite2D
 @export var projectile_spawn: Marker2D
+@export var light: PointLight2D
+@export var primary_hitbox: Hitbox
+
+@export var sanity: float = 100
 @export var max_speed: float = 200
 @export var acceleration_speed: float = 50
 @export var deceleration_speed: float = 50
@@ -77,10 +81,10 @@ func _process(delta: float):
 		var direction = (get_global_mouse_position() - self.position).normalized()
 		
 		# Apply upgrades!
-		for strategy in throwable_upgrades:
+		for strategy in player_upgrades:
 			strategy.apply_throwable_upgrade(projectile)
 		
-		print(projectile.throw_force)
+		#print(projectile.throw_force)
 		
 		# Throw it!
 		projectile.throw(projectile.throw_force, direction)

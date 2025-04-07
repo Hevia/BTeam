@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ijiaoxwmkwto" path="res://Objects/ThrowableUpgrade.tscn" id="3_i3fi7"]
 [ext_resource type="Resource" uid="uid://dmm7ary5w646c" path="res://global/Strategy/Resources/Throwables/DamageThrowable.tres" id="5_5s61s"]
 [ext_resource type="Texture2D" uid="uid://ct0qia11tqfe5" path="res://assets/Base.png" id="5_o8wgc"]
-[ext_resource type="Resource" uid="uid://brufxusxacwqi" path="res://global/Strategy/Resources/Throwables/SpeedThrowable.tres" id="6_7npjy"]
+[ext_resource type="Resource" uid="uid://cu033veffcsut" path="res://resources/Strategies/SanityUpgrades/BlindStrengthStrategy.tres" id="6_5ci8a"]
 [ext_resource type="TileSet" uid="uid://5vaa463jk1fq" path="res://resources/MainPlaceholder.tres" id="6_w20t6"]
 [ext_resource type="PackedScene" uid="uid://d2bmjnd5g7kb0" path="res://Objects/PlayerUpgrade.tscn" id="7_aw1lf"]
 [ext_resource type="Resource" uid="uid://befbmhj641ngm" path="res://global/Strategy/Resources/Player/PlayerSpeed.tres" id="8_5s61s"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b8xudfs1y4g6w" path="res://UI/Healthbar/HealthBar.tscn" id="10_dvlhv"]
 [ext_resource type="PackedScene" uid="uid://cm16p8k7dokh0" path="res://Scenes/UI/death_screen/DeathScreen.tscn" id="12_5ci8a"]
 [ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="12_wgovn"]
+[ext_resource type="PackedScene" uid="uid://c1w813v138hw4" path="res://Scenes/UI/sanity_bar/SanityBar.tscn" id="13_18xdc"]
 [ext_resource type="Resource" uid="uid://b335we3qdscps" path="res://global/Strategy/Resources/Player/PlayerHealthup.tres" id="13_cv8e0"]
-[ext_resource type="PackedScene" uid="uid://dnjb5euu3eqix" path="res://Scenes/common/prefabs/enemies/worm/WormEnemy.tscn" id="14_hkvnm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_w20t6"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 1, 65537, 0, 65537, 65537, 1, 131073, 65537, 2, 2, 65537, 0, 65538, 65537, 1, 131074, 65537, 2, 3, 65537, 0, 65539, 65537, 1, 131075, 65537, 2, 4, 131073, 0, 65540, 131073, 1, 131076, 131073, 2)
@@ -84,7 +84,6 @@ tile_set = SubResource("TileSet_5s61s")
 collision_enabled = false
 
 [node name="Player" parent="." node_paths=PackedStringArray("death_screen", "healthbar") instance=ExtResource("1_p8rbg")]
-position = Vector2(0, -3)
 death_screen = NodePath("../UI/DeathScreen")
 healthbar = NodePath("../UI/HealthBar")
 
@@ -107,7 +106,7 @@ throwable_strategy = ExtResource("5_5s61s")
 
 [node name="ThrowableUpgrade2" parent="." instance=ExtResource("3_i3fi7")]
 position = Vector2(61, -17)
-throwable_strategy = ExtResource("6_7npjy")
+throwable_strategy = ExtResource("6_5ci8a")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 light_mask = 2
@@ -115,7 +114,6 @@ tile_map_data = PackedByteArray("AAADAAAAAQABAAAAAAACAAAAAQABAAAAAAABAAAAAQABAAA
 tile_set = ExtResource("6_w20t6")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.1024, 0.0736, 0.16, 1)
 
 [node name="PlayerUpgrade" parent="." instance=ExtResource("7_aw1lf")]
@@ -126,11 +124,13 @@ player_strategy = ExtResource("8_5s61s")
 
 [node name="HealthBar" parent="UI" instance=ExtResource("10_dvlhv")]
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("10_4vhfm")]
-visible = false
-
 [node name="DeathScreen" parent="UI" node_paths=PackedStringArray("pause_menu") instance=ExtResource("12_5ci8a")]
 pause_menu = NodePath("../PauseMenu")
+
+[node name="SanityBar" parent="UI" instance=ExtResource("13_18xdc")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("10_4vhfm")]
+visible = false
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(449, -31)
@@ -152,8 +152,5 @@ color = Color(0.93, 0.1302, 0.1302, 0.376471)
 [node name="PlayerUpgrade2" parent="." instance=ExtResource("7_aw1lf")]
 position = Vector2(121, -17)
 player_strategy = ExtResource("13_cv8e0")
-
-[node name="WormEnemy" parent="." instance=ExtResource("14_hkvnm")]
-position = Vector2(-396, 143)
 
 [connection signal="upgrade_get" from="PlayerUpgrade" to="Player" method="_on_player_upgrade_upgrade_get"]

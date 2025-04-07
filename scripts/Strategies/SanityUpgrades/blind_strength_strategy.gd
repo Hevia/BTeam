@@ -1,4 +1,4 @@
-class_name DamageThrowableStrategy
+class_name BlindStrengthStrategy
 extends BaseUpgradeStrategy
 
 func apply_throwable_upgrade(throwable: Throwable):
@@ -6,3 +6,4 @@ func apply_throwable_upgrade(throwable: Throwable):
 
 func apply_player_upgrade(player: Player):
 	player.primary_hitbox.damage += 1
+	player.light.energy -= .5

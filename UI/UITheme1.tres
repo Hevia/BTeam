@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://lrvg5eemjsdd"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://lrvg5eemjsdd"]
 
 [ext_resource type="FontFile" uid="uid://4jl18bdnlikc" path="res://assets/Fonts/dpcomic.regular.ttf" id="1_21iio"]
 [ext_resource type="Texture2D" uid="uid://3hkn16f70bie" path="res://UI/assets/ButtonHover.png" id="2_eirqv"]
@@ -35,6 +35,8 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jh5qf"]
+
 [resource]
 Button/font_sizes/font_size = 62
 Button/fonts/font = ExtResource("1_21iio")
@@ -45,5 +47,6 @@ Button/styles/normal = SubResource("StyleBoxTexture_405rn")
 Button/styles/pressed = SubResource("StyleBoxTexture_lbq5l")
 GridContainer/constants/h_separation = 6
 GridContainer/constants/v_separation = 7
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_jh5qf")
 RichTextLabel/font_sizes/normal_font_size = 93
 RichTextLabel/fonts/normal_font = ExtResource("1_21iio")

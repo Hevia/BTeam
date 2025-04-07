@@ -770,7 +770,7 @@ _data = {
 &"wall_hold": SubResource("Animation_ak4un")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health", "visuals", "animation_player", "sprite_main", "sprite_sub", "projectile_spawn") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health", "visuals", "animation_player", "sprite_main", "sprite_sub", "projectile_spawn", "light", "primary_hitbox") groups=["Player"]]
 collision_mask = 129
 script = ExtResource("1_453mm")
 player_health = NodePath("Health")
@@ -779,6 +779,8 @@ animation_player = NodePath("Visuals/AnimationPlayer")
 sprite_main = NodePath("Visuals/Sprite2D")
 sprite_sub = NodePath("Visuals/Sprite2D2")
 projectile_spawn = NodePath("Visuals/ProjectileBirth")
+light = NodePath("Lighting/PointLight2D")
+primary_hitbox = NodePath("Visuals/Hitbox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -38.725)
@@ -825,6 +827,7 @@ offset = Vector2(0, -15)
 hframes = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture_repeat = 1
 texture = ExtResource("4_eaotn")
 offset = Vector2(0, -14)
 

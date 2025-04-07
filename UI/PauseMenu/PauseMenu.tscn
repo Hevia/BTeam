@@ -69,6 +69,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Resume" type="Button" parent="NinePatchRect/VBoxContainer"]
+process_mode = 3
 light_mask = 0
 visibility_layer = 524288
 material = ExtResource("2_n7v2j")
