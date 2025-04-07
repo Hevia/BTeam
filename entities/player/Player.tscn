@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqvulu7v5gdkl"]
+[gd_scene load_steps=26 format=3 uid="uid://bqvulu7v5gdkl"]
 
 [ext_resource type="Script" uid="uid://hqhyrxfxvggf" path="res://entities/player/PlayerController.gd" id="1_453mm"]
 [ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="2_eaotn"]
 [ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="3_l3c03"]
+[ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="4_2rv2u"]
 [ext_resource type="Texture2D" uid="uid://damdud6l2bf31" path="res://entities/player/assets/main sprite/Abyssmolewalkhalf-Sheet.png" id="4_ak4un"]
 [ext_resource type="Texture2D" uid="uid://bdwum82vrqlyq" path="res://entities/player/assets/main sprite/Abyssmoleidle.png" id="4_eaotn"]
 [ext_resource type="Texture2D" uid="uid://sox84r513oal" path="res://entities/player/assets/main sprite/Abyssmolewalk-Sheet.png" id="5_4pwj0"]
@@ -18,6 +19,9 @@ size = Vector2(22, 30)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eaotn"]
 radius = 8.0
 height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq27t"]
+size = Vector2(63, 43)
 
 [sub_resource type="Animation" id="Animation_g3lhm"]
 length = 0.001
@@ -128,6 +132,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_eaotn"]
@@ -368,7 +384,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_1ms0h"]
 resource_name = "swing_full"
 length = 0.8
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -456,6 +472,18 @@ tracks/6/keys = {
 "args": [],
 "method": &"emit_player_digging"
 }]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_rl6fg"]
@@ -651,6 +679,18 @@ tracks/9/keys = {
 "method": &"animation_ended"
 }]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_ak4un"]
 resource_name = "wall_hold"
@@ -744,6 +784,10 @@ projectile_spawn = NodePath("Visuals/ProjectileBirth")
 offset = Vector2(0, -38.725)
 zoom = Vector2(3.5, 3.5)
 
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_l3c03")
+metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
+
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 64
 collision_mask = 2
@@ -756,15 +800,23 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_g3lhm")
 debug_color = Color(0.401383, 0.59061, 0.421071, 0.42)
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_l3c03")
-metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_eaotn")
 
 [node name="Visuals" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="Visuals"]
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("4_2rv2u")
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Hitbox"]
+position = Vector2(30.5, -9.5)
+shape = SubResource("RectangleShape2D_mq27t")
+disabled = true
+debug_color = Color(0.7, 0, 0, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Visuals"]
 visible = false
