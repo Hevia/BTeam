@@ -1,9 +1,10 @@
 extends Control
 
 var self_opened = false
+var can_pause = true
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and can_pause:
 		toggle_pause_menu()
 
 func toggle_pause_menu():
@@ -22,6 +23,7 @@ func _on_options_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_main_menu_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
 
 func _on_quit_pressed() -> void:

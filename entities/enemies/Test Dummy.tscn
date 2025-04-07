@@ -35,8 +35,8 @@ script = ExtResource("2_fgg3s")
 metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 32
+collision_mask = 4
 script = ExtResource("3_sxwoi")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://cpa2wclfa2e4h"

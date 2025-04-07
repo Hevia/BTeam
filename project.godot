@@ -98,8 +98,12 @@ pause={
 
 2d_render/layer_20="UI"
 2d_physics/layer_1="Player"
-2d_physics/layer_2="Enemies"
-2d_physics/layer_4="Projectiles"
+2d_physics/layer_2="Enemy Hitbox"
+2d_physics/layer_3="Player Hitbox"
+2d_physics/layer_4="Layer 4"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Enemy Hurtbox"
+2d_physics/layer_7="Player Hurtbox"
 2d_physics/layer_8="Terrain"
 
 [rendering]

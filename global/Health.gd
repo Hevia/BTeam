@@ -3,6 +3,7 @@ extends Node
 
 signal max_health_changed(max_health: int)
 signal health_changed(health: int)
+signal health_changed_diff(difference: int)
 signal health_depleted
 
 @export var max_health: int = 6 : set = set_max_health, get = get_max_health
@@ -10,6 +11,7 @@ signal health_depleted
 @export var max_health_cap: int = 20
 
 var immortality_timer: Timer = null
+var damaged: bool = false
 
 @onready var health: int = max_health : set = set_health, get = get_health
 
@@ -48,6 +50,7 @@ func set_temporary_immortality(time: float):
 	immortality_timer.timeout.connect(set_immortality.bind(false))
 	immortality = true
 	immortality_timer.start
+	print(immortality_timer.time_left)
 
 func set_health(value: int):
 	if value < health and immortality:
@@ -56,8 +59,10 @@ func set_health(value: int):
 	var clamped_value = clampi(value, 0, max_health)
 	
 	if clamped_value != health:
+		var difference = value - health
 		health = value
 		health_changed.emit(health)
+		health_changed_diff.emit(difference)
 		
 		if health <= 0:
 			health_depleted.emit()

@@ -1,0 +1,168 @@
+[gd_scene load_steps=16 format=3 uid="uid://dnjb5euu3eqix"]
+
+[ext_resource type="Texture2D" uid="uid://dxi3yxv1eloui" path="res://Scenes/common/assets/enemies/worm/worm_head.png" id="1_43knp"]
+[ext_resource type="Script" uid="uid://ccxftdldfi1oy" path="res://Scenes/common/prefabs/enemies/worm/worm_enemy.gd" id="1_6438h"]
+[ext_resource type="Texture2D" uid="uid://bimi4ivrtj77" path="res://Scenes/common/assets/enemies/worm/worm_middle.png" id="2_go6pf"]
+[ext_resource type="Texture2D" uid="uid://cckj4osrvpj5v" path="res://Scenes/common/assets/enemies/worm/worm_tail.png" id="3_6438h"]
+[ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="3_lpisq"]
+[ext_resource type="Script" uid="uid://cpa2wclfa2e4h" path="res://global/hurtbox.gd" id="4_rca51"]
+[ext_resource type="Script" uid="uid://cjfr04tgxvyjg" path="res://global/Health.gd" id="7_sw2wc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6438h"]
+size = Vector2(32, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6438h"]
+radius = 104.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rca51"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_go8pn"]
+radius = 9.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sw2wc"]
+radius = 11.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ucrj"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gh1i4"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxy63"]
+radius = 6.0
+height = 32.0
+
+[node name="WormEnemy" type="Node2D"]
+
+[node name="Head" type="CharacterBody2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_6438h")
+health = NodePath("../Health")
+
+[node name="Sprite2D" type="Sprite2D" parent="Head"]
+texture = ExtResource("1_43knp")
+
+[node name="HeadTarget" type="Marker2D" parent="Head"]
+position = Vector2(-16, 0)
+
+[node name="TerrainDetector" type="Area2D" parent="Head"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/TerrainDetector"]
+shape = SubResource("RectangleShape2D_6438h")
+debug_color = Color(0, 0.595, 0.7, 0.054902)
+
+[node name="PlayerCloseDetector" type="Area2D" parent="Head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/PlayerCloseDetector"]
+shape = SubResource("CircleShape2D_6438h")
+debug_color = Color(0, 0.338333, 0.7, 0.0117647)
+
+[node name="Hitbox" type="Area2D" parent="Head"]
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("3_lpisq")
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rca51")
+debug_color = Color(0.7, 0, 0, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="Head" node_paths=PackedStringArray("health")]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("4_rca51")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Head/Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_go8pn")
+debug_color = Color(0, 0.7, 0.30625, 0.42)
+
+[node name="MiddleBody" type="CharacterBody2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="MiddleBody"]
+texture = ExtResource("2_go6pf")
+offset = Vector2(-16, 0)
+
+[node name="BodyTarget" type="Marker2D" parent="MiddleBody"]
+position = Vector2(-32, 0)
+
+[node name="Hitbox2" type="Area2D" parent="MiddleBody"]
+position = Vector2(-16, 0)
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("3_lpisq")
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBody/Hitbox2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sw2wc")
+debug_color = Color(0.7, 0, 0, 0.42)
+
+[node name="Hurtbox2" type="Area2D" parent="MiddleBody" node_paths=PackedStringArray("health")]
+position = Vector2(-16, 0)
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("4_rca51")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MiddleBody/Hurtbox2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7ucrj")
+debug_color = Color(0, 0.7, 0.30625, 0.42)
+
+[node name="Tail" type="CharacterBody2D" parent="."]
+position = Vector2(-48, 0)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Tail"]
+texture = ExtResource("3_6438h")
+offset = Vector2(-16, 0)
+
+[node name="Hitbox3" type="Area2D" parent="Tail"]
+position = Vector2(-16, 0)
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("3_lpisq")
+metadata/_custom_type_script = "uid://donmvmp38kkto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tail/Hitbox3"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gh1i4")
+debug_color = Color(0.7, 0, 0, 0.42)
+
+[node name="Hurtbox3" type="Area2D" parent="Tail" node_paths=PackedStringArray("health")]
+position = Vector2(-16, 0)
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("4_rca51")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tail/Hurtbox3"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fxy63")
+debug_color = Color(0, 0.7, 0.30625, 0.42)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("7_sw2wc")
+metadata/_custom_type_script = "uid://cjfr04tgxvyjg"
+
+[connection signal="body_entered" from="Head/TerrainDetector" to="Head" method="_on_terrain_detector_body_entered"]
+[connection signal="body_exited" from="Head/TerrainDetector" to="Head" method="_on_terrain_detector_body_exited"]
+[connection signal="body_entered" from="Head/PlayerCloseDetector" to="Head" method="_on_player_close_detector_body_entered"]
+[connection signal="body_exited" from="Head/PlayerCloseDetector" to="Head" method="_on_player_close_detector_body_exited"]
+[connection signal="health_depleted" from="Health" to="Head" method="_on_health_health_depleted"]

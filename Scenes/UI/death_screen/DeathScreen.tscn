@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm16p8k7dokh0"]
+
+[ext_resource type="Theme" uid="uid://lrvg5eemjsdd" path="res://UI/UITheme1.tres" id="1_vbq58"]
+[ext_resource type="Texture2D" uid="uid://cw68kxrwvu28d" path="res://UI/assets/MenuBG.png" id="2_8ws65"]
+[ext_resource type="Script" uid="uid://dci8ubfsjy04b" path="res://Scenes/UI/death_screen/death_screen.gd" id="2_mq2ut"]
+
+[node name="DeathScreen" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vbq58")
+script = ExtResource("2_mq2ut")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36, 0.162, 0.162, 0.305882)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -337.0
+offset_top = -187.0
+offset_right = 337.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8ws65")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_top = 44.0
+offset_right = 255.0
+offset_bottom = 170.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "You [color=#9c1a11]DIED[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -7.0
+offset_right = 234.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="Button" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="NinePatchRect/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="NinePatchRect/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

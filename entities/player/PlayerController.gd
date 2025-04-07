@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 @onready var camera_2d: Camera2D = $Camera2D
 
 @export var player_health: Health
+@export var death_screen : Control
 @export var healthbar : GridContainer
 @export var visuals: Node2D
 @export var animation_player: AnimationPlayer
@@ -244,3 +245,13 @@ func _on_health_health_changed(health: int) -> void:
 
 func _on_health_max_health_changed(max_health: int) -> void:
 	healthbar.update_max(max_health)
+
+
+func _on_health_health_depleted() -> void:
+	death_screen.you_died()
+
+
+func _on_health_health_changed_diff(difference: int) -> void:
+	#if difference < 0:
+		#player_health.set_temporary_immortality(1)
+	pass

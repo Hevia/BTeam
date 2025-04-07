@@ -731,6 +731,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_health", "visuals", "animation_player", "sprite_main", "sprite_sub", "projectile_spawn") groups=["Player"]]
+collision_mask = 129
 script = ExtResource("1_453mm")
 player_health = NodePath("Health")
 visuals = NodePath("Visuals")
@@ -744,6 +745,8 @@ offset = Vector2(0, -38.725)
 zoom = Vector2(3.5, 3.5)
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 64
+collision_mask = 2
 script = ExtResource("2_eaotn")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://cpa2wclfa2e4h"
@@ -796,4 +799,6 @@ range_item_cull_mask = 3
 texture = ExtResource("11_1ms0h")
 
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_changed_diff" from="Health" to="." method="_on_health_health_changed_diff"]
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="max_health_changed" from="Health" to="." method="_on_health_max_health_changed"]
