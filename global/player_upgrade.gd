@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 func on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.player_upgrades.append(player_strategy)
+		player_strategy.apply_player_upgrade(body)
 		upgrade_get.emit()
 		
 		queue_free()

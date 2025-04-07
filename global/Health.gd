@@ -1,12 +1,13 @@
 class_name Health
 extends Node
 
-signal max_health_changed(difference: int)
-signal health_changed(difference: int)
+signal max_health_changed(max_health: int)
+signal health_changed(health: int)
 signal health_depleted
 
-@export var max_health: int = 100 : set = set_max_health, get = get_max_health
+@export var max_health: int = 6 : set = set_max_health, get = get_max_health
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
+@export var max_health_cap: int = 20
 
 var immortality_timer: Timer = null
 
@@ -15,13 +16,15 @@ var immortality_timer: Timer = null
 func set_max_health(value: int):
 	var clamped_value = 1 if value <= 0 else value
 	
-	if not clamped_value == max_health:
-		var difference = clamped_value - max_health
+	if max_health == max_health_cap:
+		pass
+	elif not clamped_value == max_health:
 		max_health = value
-		max_health_changed.emit(difference)
+		max_health_changed.emit(max_health)
 		
 		if health > max_health:
 			health = max_health
+			health_changed.emit(health)
 
 func get_max_health() -> int:
 	return max_health
@@ -53,9 +56,8 @@ func set_health(value: int):
 	var clamped_value = clampi(value, 0, max_health)
 	
 	if clamped_value != health:
-		var difference = clamped_value - health
 		health = value
-		health_changed.emit(difference)
+		health_changed.emit(health)
 		
 		if health <= 0:
 			health_depleted.emit()

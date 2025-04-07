@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 @onready var camera_2d: Camera2D = $Camera2D
 
 @export var player_health: Health
+@export var healthbar : GridContainer
 @export var visuals: Node2D
 @export var animation_player: AnimationPlayer
 @export var sprite_main: Sprite2D
@@ -143,8 +144,8 @@ func handle_movement(delta):
 	else:
 		target_move_speed = move_toward(target_move_speed, 0, deceleration_speed)
 	
-	print("is_wall_jumping " + str(is_wall_jumping))
-	print("wall_jump_kick_speed: " + str(wall_jump_kick_speed))
+	#print("is_wall_jumping " + str(is_wall_jumping))
+	#print("wall_jump_kick_speed: " + str(wall_jump_kick_speed))
 	
 	# Apply Movement
 	velocity.x = target_move_speed + wall_jump_kick_speed
@@ -233,4 +234,13 @@ func emit_player_digging():
 
 func _on_player_upgrade_upgrade_get() -> void:
 	for strategy in player_upgrades:
-			strategy.apply_player_upgrade(player)
+		print("upgraded!")
+		#strategy.apply_player_upgrade(player)
+
+
+func _on_health_health_changed(health: int) -> void:
+	healthbar.update_partial(health)
+
+
+func _on_health_max_health_changed(max_health: int) -> void:
+	healthbar.update_max(max_health)
