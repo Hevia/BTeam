@@ -10,11 +10,12 @@ config_version=5
 
 [application]
 
-config/name="BTeam"
+config/name="Abyss Mole"
 run/main_scene="uid://bejrwxpqa6uuu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+boot_splash/image="uid://djohvbtjoi5wf"
+config/icon="uid://dh0d4gdxwihkr"
 
 [display]
 
