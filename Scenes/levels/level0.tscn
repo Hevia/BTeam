@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwcopv6xc4q7d"]
+
+[ext_resource type="Texture2D" uid="uid://b6fsacwwttuyx" path="res://assets/parallax_bg/7.png" id="2_d37s3"]
+[ext_resource type="Texture2D" uid="uid://cq6ysuf3wly0y" path="res://assets/parallax_bg/6.png" id="3_u43sl"]
+[ext_resource type="Texture2D" uid="uid://c405q64fmmdfd" path="res://assets/parallax_bg/5.png" id="4_kwmvw"]
+[ext_resource type="Texture2D" uid="uid://fuirjw42bkqy" path="res://assets/parallax_bg/4.png" id="5_n1ur0"]
+[ext_resource type="Texture2D" uid="uid://bvvrrdq7dve78" path="res://assets/parallax_bg/3.png" id="6_o4jym"]
+[ext_resource type="Texture2D" uid="uid://blsoncrqrmqcr" path="res://assets/parallax_bg/2.png" id="7_8ioxr"]
+[ext_resource type="Texture2D" uid="uid://djhkdk8oteou8" path="res://assets/parallax_bg/1.png" id="8_cgpx0"]
+
+[node name="Level0" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(6, 6)
+
+[node name="CaveBackground" type="Parallax2D" parent="Background"]
+scale = Vector2(1.00001, 1.00001)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CaveBackground"]
+texture = ExtResource("2_d37s3")
+
+[node name="PillarsFar3" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar3"]
+texture = ExtResource("3_u43sl")
+
+[node name="PillarsFar2" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar2"]
+texture = ExtResource("4_kwmvw")
+
+[node name="PillarsFar" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.05, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsFar"]
+texture = ExtResource("5_n1ur0")
+
+[node name="PillarsNear" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.12, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/PillarsNear"]
+texture = ExtResource("6_o4jym")
+
+[node name="CelingsNear2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.25, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CelingsNear2"]
+texture = ExtResource("7_8ioxr")
+
+[node name="CeilingsNear" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(1.5, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CeilingsNear"]
+texture = ExtResource("8_cgpx0")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Tiles" type="Node2D" parent="."]

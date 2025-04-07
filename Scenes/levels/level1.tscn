@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bvvrrdq7dve78" path="res://assets/parallax_bg/3.png" id="6_o4jym"]
 [ext_resource type="Texture2D" uid="uid://blsoncrqrmqcr" path="res://assets/parallax_bg/2.png" id="7_8ioxr"]
 [ext_resource type="Texture2D" uid="uid://djhkdk8oteou8" path="res://assets/parallax_bg/1.png" id="8_cgpx0"]
-[ext_resource type="TileSet" uid="uid://bvayovqf1txgx" path="res://resources/game.tres" id="9_ex736"]
 [ext_resource type="PackedScene" uid="uid://drfq3sfuq1vnt" path="res://Scenes/game_objects/lamp.tscn" id="9_lhsqt"]
 [ext_resource type="PackedScene" uid="uid://csr7xbbvnmuvv" path="res://Scenes/game_objects/dialog_trigger.tscn" id="10_1p2rh"]
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="10_hkrpn"]
