@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://drfq3sfuq1vnt"]
+
+[ext_resource type="Texture2D" uid="uid://hlrqq6ypn4p8" path="res://assets/village props/TX Village Props.png" id="1_ds0a8"]
+[ext_resource type="Texture2D" uid="uid://comgvxx6w6enq" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_khlu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kevo0"]
+atlas = ExtResource("1_ds0a8")
+region = Rect2(936.985, 27.1421, 26.6376, 103.818)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx07h"]
+atlas = ExtResource("1_ds0a8")
+region = Rect2(974.049, 34.1137, 36.6909, 31.0461)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nigdw"]
+atlas = ExtResource("1_ds0a8")
+region = Rect2(965.837, 2.56831, 20.3211, 27.0948)
+
+[node name="Lamp" type="Node2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(0, -50)
+
+[node name="Post" type="Sprite2D" parent="Visuals"]
+texture = SubResource("AtlasTexture_kevo0")
+
+[node name="Holder" type="Sprite2D" parent="Visuals"]
+position = Vector2(18, -27)
+texture = SubResource("AtlasTexture_dx07h")
+
+[node name="Lamp" type="Sprite2D" parent="Visuals"]
+position = Vector2(29, -21)
+texture = SubResource("AtlasTexture_nigdw")
+
+[node name="PointLight2D" type="PointLight2D" parent="Visuals"]
+position = Vector2(29, -19)
+color = Color(0.847059, 0.568627, 0.227451, 1)
+energy = 0.7
+range_z_min = -500
+range_z_max = 500
+texture = ExtResource("2_khlu7")
+texture_scale = 0.4

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://csr7xbbvnmuvv"]
+
+[ext_resource type="Script" uid="uid://oc7fov1ctb8x" path="res://Scenes/game_objects/dialog_zone.gd" id="1_nvaf0"]
+[ext_resource type="FontFile" uid="uid://4jl18bdnlikc" path="res://assets/Fonts/dpcomic.regular.ttf" id="2_tew2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha4vg"]
+size = Vector2(97, 66)
+
+[node name="DialogTrigger" type="Node2D"]
+script = ExtResource("1_nvaf0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ha4vg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -10.0
+offset_top = -35.0
+offset_right = 30.0
+offset_bottom = 5.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_tew2c")
+bbcode_enabled = true
+text = "[wave]Dig[/wave]"

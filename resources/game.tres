@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bvayovqf1txgx"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://bvayovqf1txgx"]
 
 [ext_resource type="Texture2D" uid="uid://dv1qxye271avk" path="res://assets/village props/TX Chest Animation.png" id="1_bl4yv"]
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="2_f2nem"]
 [ext_resource type="Texture2D" uid="uid://ct0qia11tqfe5" path="res://assets/Base.png" id="2_rsme2"]
 [ext_resource type="Texture2D" uid="uid://hlrqq6ypn4p8" path="res://assets/village props/TX Village Props.png" id="4_dcr0n"]
+[ext_resource type="PackedScene" uid="uid://drfq3sfuq1vnt" path="res://Scenes/game_objects/lamp.tscn" id="5_dcr0n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v6sxd"]
 texture = ExtResource("1_bl4yv")
@@ -128,6 +129,9 @@ texture_region_size = Vector2i(32, 32)
 18:3/0 = 0
 19:3/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_v6sxd"]
+scenes/1/scene = ExtResource("5_dcr0n")
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -140,3 +144,4 @@ sources/1 = SubResource("TileSetAtlasSource_f2nem")
 sources/2 = SubResource("TileSetScenesCollectionSource_bl4yv")
 sources/0 = SubResource("TileSetAtlasSource_v6sxd")
 sources/5 = SubResource("TileSetAtlasSource_ojggu")
+sources/6 = SubResource("TileSetScenesCollectionSource_v6sxd")
