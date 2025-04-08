@@ -40,9 +40,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -214.0
-offset_top = -337.0
+offset_top = -284.0
 offset_right = 214.0
-offset_bottom = 337.0
+offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_sjch0")
@@ -62,9 +62,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -169.0
-offset_top = -521.0
+offset_top = -416.0
 offset_right = 169.0
-offset_bottom = -29.0
+offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -78,6 +78,7 @@ theme = ExtResource("3_n7v2j")
 text = "Resume"
 
 [node name="Options" type="Button" parent="NinePatchRect/VBoxContainer"]
+visible = false
 light_mask = 0
 visibility_layer = 524288
 material = ExtResource("2_n7v2j")

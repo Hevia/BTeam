@@ -21,6 +21,7 @@ config/icon="uid://dh0d4gdxwihkr"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
 mouse_cursor/custom_image="uid://dmtwe4bb65hut"
 
 [global_group]

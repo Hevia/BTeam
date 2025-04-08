@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=24 format=4 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
@@ -104,12 +104,10 @@ position = Vector2(-149, 0)
 [node name="ThrowableUpgrade" parent="." instance=ExtResource("3_i3fi7")]
 position = Vector2(-104, -17)
 throwable_strategy = ExtResource("5_5s61s")
-needs_update = true
 
 [node name="ThrowableUpgrade2" parent="." instance=ExtResource("3_i3fi7")]
 position = Vector2(61, -17)
 throwable_strategy = ExtResource("6_5ci8a")
-needs_update = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 light_mask = 2
@@ -121,7 +119,6 @@ tile_set = ExtResource("6_w20t6")
 [node name="PlayerUpgrade" parent="." instance=ExtResource("7_aw1lf")]
 position = Vector2(-56, -16)
 player_strategy = ExtResource("8_5s61s")
-needs_update = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -155,6 +152,5 @@ color = Color(0.93, 0.1302, 0.1302, 0.376471)
 [node name="PlayerUpgrade2" parent="." instance=ExtResource("7_aw1lf")]
 position = Vector2(121, -17)
 player_strategy = ExtResource("13_cv8e0")
-needs_update = true
 
 [connection signal="upgrade_get" from="PlayerUpgrade" to="Player" method="_on_player_upgrade_upgrade_get"]

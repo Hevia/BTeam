@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8r2c72s077ub"]
+
+[ext_resource type="TileSet" uid="uid://dwairlfeuobrr" path="res://resources/Cave01.tres" id="1_rnjwa"]
+
+[sub_resource type="Gradient" id="Gradient_rnjwa"]
+offsets = PackedFloat32Array(0.0155039, 0.844961, 0.879845)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srt36"]
+gradient = SubResource("Gradient_rnjwa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="LampBeebo" type="Node2D"]
+
+[node name="Lamp" type="TileMapLayer" parent="."]
+position = Vector2(16, 0)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 12, 0, 2, 0, 0, 0)
+tile_set = ExtResource("1_rnjwa")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(9, -26)
+color = Color(0.855469, 0.409877, 0.0167084, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_srt36")

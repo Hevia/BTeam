@@ -54,7 +54,7 @@ func _ready():
 	jump_velocity = -jump_velocity
 	# Set projectile variables to load projectile prefabs
 	projectile1 = load("uid://blltbftmyr58q") # Replace UID with whatever projectile is active
-	projectile2 = load("uid://b8elap8dki3xt")
+	#projectile2 = load("uid://b8elap8dki3xt")
 	# Default active throwable to first projectile
 	throwable = projectile1
 	
@@ -70,8 +70,8 @@ func _process(delta: float):
 	# Placeholder throwable switching
 	if Input.is_action_just_pressed("weapon1"):
 		throwable = projectile1
-	if Input.is_action_just_pressed("weapon2"):
-		throwable = projectile2
+	#if Input.is_action_just_pressed("weapon2"):
+		#throwable = projectile2
 	
 	# Throw attack
 	if Input.is_action_just_pressed("attack2"):
@@ -259,3 +259,13 @@ func _on_health_health_changed_diff(difference: int) -> void:
 	#if difference < 0:
 		#player_health.set_temporary_immortality(1)
 	pass
+
+
+func _on_exit_trigger_body_entered(body: Node2D) -> void:
+	if body is Player:
+		get_tree().change_scene_to_file("res://Scenes/levels/second/secondlevel.tscn")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		get_tree().change_scene_to_file("res://Scenes/end_screen_real.tscn")

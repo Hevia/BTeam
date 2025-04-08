@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bk6g2ksaotdpa"]
+
+[node name="RockThrowable" type="RigidBody2D"]

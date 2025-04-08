@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://comvt6amlkxwd"]
+
+[ext_resource type="FontFile" uid="uid://4jl18bdnlikc" path="res://assets/Fonts/dpcomic.regular.ttf" id="1_o3d12"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hedrd"]
+light_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel"]
+material = SubResource("CanvasItemMaterial_hedrd")
+offset_left = -110.0
+offset_top = -137.0
+offset_right = 110.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("1_o3d12")
+theme_override_fonts/mono_font = ExtResource("1_o3d12")
+theme_override_fonts/italics_font = ExtResource("1_o3d12")
+theme_override_fonts/bold_italics_font = ExtResource("1_o3d12")
+theme_override_fonts/bold_font = ExtResource("1_o3d12")
+bbcode_enabled = true
+text = "[wave]Example[/wave]
+"
+horizontal_alignment = 1
+vertical_alignment = 2
