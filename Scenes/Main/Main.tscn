@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cxdbsnj4vet4u"]
+[gd_scene load_steps=25 format=4 uid="uid://cxdbsnj4vet4u"]
 
 [ext_resource type="PackedScene" uid="uid://bqvulu7v5gdkl" path="res://entities/player/Player.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://durof3dso3qj7" path="res://entities/enemies/Test Dummy.tscn" id="2_qtv3y"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://donmvmp38kkto" path="res://global/hitbox.gd" id="12_wgovn"]
 [ext_resource type="PackedScene" uid="uid://c1w813v138hw4" path="res://Scenes/UI/sanity_bar/SanityBar.tscn" id="13_18xdc"]
 [ext_resource type="Resource" uid="uid://b335we3qdscps" path="res://global/Strategy/Resources/Player/PlayerHealthup.tres" id="13_cv8e0"]
+[ext_resource type="PackedScene" uid="uid://ofgowskl740" path="res://Scenes/UI/SanityLevelUp.tscn" id="15_epx8f"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_w20t6"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 1, 65537, 0, 65537, 65537, 1, 131073, 65537, 2, 2, 65537, 0, 65538, 65537, 1, 131074, 65537, 2, 3, 65537, 0, 65539, 65537, 1, 131075, 65537, 2, 4, 131073, 0, 65540, 131073, 1, 131076, 131073, 2)
@@ -84,9 +85,11 @@ tile_map_data = PackedByteArray("AADR/9j/AQABAAEAAADR/9n/AQABAAEAAADR/9r/AQABAAE
 tile_set = SubResource("TileSet_5s61s")
 collision_enabled = false
 
-[node name="Player" parent="." node_paths=PackedStringArray("death_screen", "healthbar") instance=ExtResource("1_p8rbg")]
+[node name="Player" parent="." node_paths=PackedStringArray("death_screen", "healthbar", "sanitybar", "sanityupgrade") instance=ExtResource("1_p8rbg")]
 death_screen = NodePath("../UI/DeathScreen")
 healthbar = NodePath("../UI/HealthBar")
+sanitybar = NodePath("../UI/SanityBar")
+sanityupgrade = NodePath("../UI/SanityLevelUp")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 visible = false
@@ -132,6 +135,10 @@ pause_menu = NodePath("../PauseMenu")
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_4vhfm")]
 visible = false
 
+[node name="SanityLevelUp" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("15_epx8f")]
+visible = false
+player = NodePath("../../Player")
+
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(449, -31)
 collision_layer = 2
@@ -152,5 +159,3 @@ color = Color(0.93, 0.1302, 0.1302, 0.376471)
 [node name="PlayerUpgrade2" parent="." instance=ExtResource("7_aw1lf")]
 position = Vector2(121, -17)
 player_strategy = ExtResource("13_cv8e0")
-
-[connection signal="upgrade_get" from="PlayerUpgrade" to="Player" method="_on_player_upgrade_upgrade_get"]

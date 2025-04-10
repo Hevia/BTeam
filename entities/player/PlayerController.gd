@@ -5,6 +5,8 @@ class_name Player extends CharacterBody2D
 @export var player_health: Health
 @export var death_screen : Control
 @export var healthbar : GridContainer
+@export var sanitybar : Control
+@export var sanityupgrade: Control
 @export var visuals: Node2D
 @export var animation_player: AnimationPlayer
 @export var sprite_main: Sprite2D
@@ -242,6 +244,11 @@ func _on_player_upgrade_upgrade_get() -> void:
 		print("upgraded!")
 		#strategy.apply_player_upgrade(player)
 
+func update_sanity():
+	sanitybar.update_sanity_bar(sanity)
+	if sanity <= 0:
+		sanityupgrade.level_up()
+		sanity = 100
 
 func _on_health_health_changed(health: int) -> void:
 	healthbar.update_partial(health)
@@ -256,9 +263,9 @@ func _on_health_health_depleted() -> void:
 
 
 func _on_health_health_changed_diff(difference: int) -> void:
-	#if difference < 0:
-		#player_health.set_temporary_immortality(1)
-	pass
+	if difference < 0:
+		sanity -= 50
+	update_sanity()
 
 
 func _on_exit_trigger_body_entered(body: Node2D) -> void:
